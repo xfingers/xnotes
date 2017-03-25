@@ -1,4 +1,4 @@
-# Linux 学习笔记
+# Linux 笔记
 Coding StudyNotes
 ***
 #  一、Linux用户管理
