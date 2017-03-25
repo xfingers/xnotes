@@ -4,8 +4,10 @@
 
 #### 1.查看Python版本 : ` python -V `
 以上命令执行结果如下: ` Python 3.6.0 `
-#### 2.进入Python交互式编程模式
-#### 3.第一个 Python3 程序
+#### 2.进入Python交互式编程模式: ` python ` 或 ` ipython `
+#### 3.第一个 Python3 程序:
+` #!/usr/bin/python3 `
+` print("Hello, Python!") `
 ## 02 Python3 基础语法
 ## 03 Python3 基本数据类型
 ## 04 Python3 解释器
