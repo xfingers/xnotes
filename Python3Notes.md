@@ -9,6 +9,7 @@
 #### 2.进入Python交互式编程模式: ` python ` 或 ` ipython `
 #### 3.第一个 Python3 程序:
 > `#!/usr/bin/python3 `
+
 > `print("Hello, Python!") `
 
 ## 02 Python3 基础语法
