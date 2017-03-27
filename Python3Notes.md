@@ -317,9 +317,63 @@ Be careful not to fall off!
 ### 4.2 脚本式编程
 将如下代码拷贝至hello.py文件中：
 ```
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 print ("Hello, Python!");
 ```
+通过以下命令执行该脚本：
+```
+python hello.py
+```
+输出结果为：
+```
+Hello, Python!
+```
+在Linux/Unix系统中，你可以在脚本顶部添加以下命令让Python脚本可以像SHELL脚本一样可直接执行：
+```
+#! /usr/bin/env python3.6
+```
+然后修改脚本权限，**使其有执行权限**，命令如下：
+```
+$ chmod +x hello.py
+```
+执行以下命令：
+```
+./hello.py
+```
+输出结果为：
+```
+Hello, Python!
+```
 ## 05 Python3 注释
+确保对模块, 函数, 方法和行内注释使用正确的风格
+Python中的注释有单行注释和多行注释：
+Python中单行注释以#开头，例如：
+```
+# 这是一个注释
+print("Hello, World!")
+```
+多行注释用三个单引号（'''）或者三个双引号（"""）将注释括起来，例如:
+1. 单引号(''')
+```
+#!/usr/bin/python3 
+'''
+这是多行注释，用三个单引号
+这是多行注释，用三个单引号 
+这是多行注释，用三个单引号
+'''
+print("Hello, World!")
+```
+2. 双引号(""")
+```
+#!/usr/bin/python3 
+"""
+这是多行注释，用三个双引号
+这是多行注释，用三个双引号 
+这是多行注释，用三个双引号
+"""
+print("Hello, World!")
+```
 ## 06 Python3 数字运算
 ## 07 Python3 字符串
 ## 08 Python3 列表
