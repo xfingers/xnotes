@@ -975,6 +975,126 @@ pass语句什么都不做。它只在语法上需要一条语句但程序不需�
 ...     pass
 ```
 ## 12 Python3 函数
+Python 定义函数使用 def 关键字，一般格式如下：
+```
+def  函数名（参数列表）：
+    函数体
+```
+让我们使用函数来输出"Hello World！"：
+```
+>>> def hello() :
+    print("Hello World!")
+>>> hello()
+Hello World!
+>>>
+```
+更复杂点的应用，函数中带上参数变量:
+```
+def area(width, height):
+    return width * height
+  
+def print_welcome(name):
+    print("Welcome", name)
+ 
+print_welcome("Fred")
+w = 4
+h = 5
+print("width =", w, " height =", h, " area =", area(w, h))
+```
+以上实例输出结果：
+```
+Welcome Fred
+width = 4  height = 5  area = 20
+```
+### 12.1 函数变量作用域
+定义在函数内部的变量拥有一个局部作用域，定义在函数外的拥有全局作用域。
+通过以下实例，你可以清楚了解Python函数变量的作用域：
+```
+#!/usr/bin/env python3
+a = 4  # 全局变量
+  
+def print_func1():
+    a = 17 # 局部变量
+    print("in print_func a = ", a)
+def print_func2():  
+    print("in print_func a = ", a)
+print_func1()
+print_func2()
+print("a = ", a)
+```
+以上实例运行结果如下：
+```
+in print_func a =  17
+in print_func a =  4
+a =  4
+```
+### 12.2 关键字参数
+函数也可以使用 kwarg=value 的关键字参数形式被调用.例如,以下函数:
+```
+def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
+    print("-- This parrot wouldn't", action, end=' ')
+    print("if you put", voltage, "volts through it.")
+    print("-- Lovely plumage, the", type)
+    print("-- It's", state, "!")
+```
+可以以下几种方式被调用:
+```
+parrot(1000)                                          # 1 positional argument
+parrot(voltage=1000)                                  # 1 keyword argument
+parrot(voltage=1000000, action='VOOOOOM')             # 2 keyword arguments
+parrot(action='VOOOOOM', voltage=1000000)             # 2 keyword arguments
+parrot('a million', 'bereft of life', 'jump')         # 3 positional arguments
+parrot('a thousand', state='pushing up the daisies')  # 1 positional, 1 keyword
+```
+以下为错误调用方法：
+```
+parrot()                     # required argument missing
+parrot(voltage=5.0, 'dead')  # non-keyword argument after a keyword argument
+parrot(110, voltage=220)     # duplicate value for the same argument
+parrot(actor='John Cleese')  # unknown keyword argument
+```
+### 12.3 返回值
+Python的函数的返回值使用return语句，可以将函数作为一个值赋值给指定变量：
+```
+def return_sum(x,y):
+    c = x + y
+    return c
+ 
+res = return_sum(4,5)
+print(res)
+```
+也可以让函数返回空值：
+```
+def empty_return(x,y):
+    c = x + y
+    return
+ 
+res = empty_return(4,5)
+print(res)
+```
+### 12.4 可变参数列表
+最后,一个最不常用的选择是可以让函数调用可变个数的参数.这些参数被包装进一个元组(查看元组和序列).在这些可变个数的参数之前,可以有零到多个普通的参数:
+```
+def arithmetic_mean(*args):
+    sum = 0
+    for x in args:
+        sum += x
+    return sum
+ 
+print(arithmetic_mean(45,32,89,78))
+print(arithmetic_mean(8989.8,78787.78,3453,78778.73))
+print(arithmetic_mean(45,32))
+print(arithmetic_mean(45))
+print(arithmetic_mean())
+```
+以上实例输出结果为：
+```
+244
+170009.31
+77
+45
+0
+```
 ## 13 Python3 数据结构
 ## 14 Python3 模块
 ## 15 Python3 输入和输出
