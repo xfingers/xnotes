@@ -2,7 +2,7 @@
 逐步整理那些年学过的技能树吧o(∩_∩)o 
 ***
 # 代码篇
-## [Python 3 笔记] (Python3Notes.md) (更新中) 
+## [Python 3 笔记](Python3Notes.md) (更新中) 
 ## Django 笔记 （计划中）
 ## JavaScript 笔记 （计划中）
 ## PHP 笔记 （计划中）
