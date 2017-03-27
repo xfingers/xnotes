@@ -37,10 +37,16 @@
 
 在 Python3 中，非 -ASCII 标识符也是允许的。
 ### 2.3 Python 保留字
-
+保留字即关键字，不能把它们用作任何标识符名称。Python的标准库提供了一个keyword module，可以输出当前版本的所有关键字：
+```
+>>> import keyword
+>>> keyword.kwlist
+['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+```
 ### 2.4 注释
-
+Python 中单行注释以#开头，多行注释用三个单引号(''')或者三个双引号（"""）将注释括起来。
 ### 2.5 行与缩进
+Python 最具特色的就是使用缩进来表示代码块。缩进的空格数是可变的，但是同一个代码块的语句必须包含相同的缩进空格数。通常建议使用**四个连续的空格**。
 ### 2.6 数据类型
 ### 2.7 字符串
 
