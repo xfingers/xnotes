@@ -3,14 +3,18 @@
 > Python的3.0版本，常被称为Python 3000，或简称Py3k。相对于Python的早期版本，这是一个较大的升级。为了不带入过多的累赘，Python 3.0在设计的时候没有考虑向下兼容。
 
 #### 1.查看Python版本 : 
-> python -V
+```
+  $ python -V
+```
 以上命令执行结果如下: 
-> Python 3.6.0
-#### 2.进入Python交互式编程模式: ` python ` 或 ` ipython `
+```
+  $ Python 3.6.0
+```
+#### 2.进入Python交互式编程模式: `  $ python ` 或 `  $ ipython `
 #### 3.第一个 Python3 程序:
 ```
-#!/usr/bin/python3
-print("Hello, Python!")
+  #!/usr/bin/python3
+  print("Hello, Python!")
 ```
 ## 02 Python3 基础语法
 ## 03 Python3 基本数据类型
