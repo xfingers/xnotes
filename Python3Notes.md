@@ -623,8 +623,195 @@ IndexError: string index out of range
 34
 ```
 ## 08 Python3 列表
+Python囊括了大量的复合数据类型，用于组织其它数值。最有用的是列表，即写在方括号之间、用逗号分隔开的数值列表。列表内的项目不必全是相同的类型。
+```
+>>> a = ['spam', 'eggs', 100, 1234]
+>>> a
+['spam', 'eggs', 100, 1234]
+>>> squares = [1, 4, 9, 16, 25]
+>>> squares
+[1, 4, 9, 16, 25]
+```
+像字符串一样，列表可以被索引和切片：
+```
+<pre>
+>>> squares[0]  # 索引返回的指定项
+1
+>>> squares[-1]
+25
+>>> squares[-3:]  # 切割列表并返回新的列表
+[9, 16, 25]
+```
+所有的分切操作返回一个包含有所需元素的新列表。如下例中，分切将返回列表 squares 的一个拷贝：
+```
+>>> squares[:]
+[1, 4, 9, 16, 25]
+```
+列表还支持拼接操作：
+```
+>>> squares + [36, 49, 64, 81, 100]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+```
+Python 字符串是固定的，列表可以改变其中的元素：
+```
+>>> cubes = [1, 8, 27, 65, 125]   
+>>> 4 ** 3  
+64
+>>> cubes[3] = 64  # 修改列表值
+>>> cubes
+[1, 8, 27, 64, 125]
+```
+也可以通过使用append()方法在列表的末尾添加新项：
+```
+>>> cubes.append(216)  # cube列表中添加新值
+>>> cubes.append(7 ** 3)  #  cube列表中添加第七个值
+>>> cubes
+[1, 8, 27, 64, 125, 216, 343]
+```
+也可以修改指定区间的列表值：
+```
+>>> letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+>>> letters
+['a', 'b', 'c', 'd', 'e', 'f', 'g']
+>>> # 替换一些值
+>>> letters[2:5] = ['C', 'D', 'E']
+>>> letters
+['a', 'b', 'C', 'D', 'E', 'f', 'g']
+>>> # 移除值
+>>> letters[2:5] = []
+>>> letters
+['a', 'b', 'f', 'g']
+>>> # 清除列表
+>>> letters[:] = []
+>>> letters
+[]
+```
+内置函数 len() 用于统计列表：
+```
+>>> letters = ['a', 'b', 'c', 'd']
+>>> len(letters)
+4
+```
+也可以使用嵌套列表（在列表里创建其它列表），例如：
+```
+>>> a = ['a', 'b', 'c']
+>>> n = [1, 2, 3]
+>>> x = [a, n]
+>>> x
+[['a', 'b', 'c'], [1, 2, 3]]
+>>> x[0]
+['a', 'b', 'c']
+>>> x[0][1]
+'b'
+```
 ## 09 Python3 编程第一步
-## 10 Python3 条件控制
+现在，我们能使用Python完成比 2+2 更复杂的工作。在下例里，我们能写出一个初步的斐波纳契数列如下：
+```
+>>> # Fibonacci series: 斐波纳契数列
+... # 两个元素的总和确定了下一个数
+... a, b = 0, 1
+>>> while b < 10:
+...     print(b)
+...     a, b = b, a+b
+...
+1
+1
+2
+3
+5
+8
+```
+这个例子介绍了几个新特征。
+- 第一行包含了一个复合赋值：变量 a 和 b 同时得到新值 0 和 1。最后一行再次使用了同样的方法，可以看到，右边的表达式会在赋值变动之前执行。右边表达式的执行顺序是从左往右的。
+```
+>>> i = 256*256
+>>> print('The value of i is', i)
+The value of i is 65536
+```
+关键字end可以被用于防止输出新的一行，或者在输出的末尾添加不同的字符：
+```
+>>> a, b = 0, 1
+>>> while b < 1000:
+...     print(b, end=',')
+...     a, b = b, a+b
+...
+1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,
+```
+## 10 Python3 条件控制：if 语句
+Python中if语句的一般形式如下所示：
+```
+if condition_1:
+    statement_block_1
+elif condition_2:
+    statement_block_2
+else:
+    statement_block_3
+```
+如果 "condition_1" 为 True 将执行 "statement_block_1" 块语句，如果 "condition_1" 为False，将判断 "condition_2"，如果"condition_2" 为 True 将执行 "statement_block_2" 块语句，如果 "condition_2" 为False，将执行"statement_block_3"块语句。
+#### 实例
+以下实例演示了狗的年龄计算判断：
+```
+age = int(input("Age of the dog: "))
+print()
+if age < 0:
+    print("This can hardly be true!")
+elif age == 1:
+    print("about 14 human years")
+elif age == 2:
+    print("about 22 human years")
+elif age > 2:
+    human = 22 + (age -2)*5
+    print("Human years: ", human)
+input('press Return>')
+```
+将以上脚本保存在dog.py文件中，并执行该脚本：
+```
+python dog.py
+Age of the dog: 1
+ 
+about 14 human years
+```
+以下为if中常用的操作运算符:
+|操作符|描述|
+|:-:|:-|
+|<|小于|
+|<=|小于或等于|
+|>|大于|
+|>=|大于或等于|
+|==|等于，比较对象是否相等|
+|!=|不等于|
+#### 实例
+```
+# 程序演示了 == 操作符
+# 使用数字
+print(5 == 6)
+# 使用变量
+x = 5
+y = 8
+print(x == y)
+```
+以上实例输出结果：
+```
+False
+False
+```
+high_low.py文件：
+```
+#!/usr/bin/python3
+# 该实例演示了数字猜谜游戏
+number = 7
+guess = -1
+print("Guess the number!")
+while guess != number:
+    guess = int(input("Is it... "))
+  
+    if guess == number:
+        print("Hooray! You guessed it right!")
+    elif guess < number:
+        print("It's bigger...")
+    elif guess > number:
+        print("It's not so big.")
+```
 ## 11 Python3 循环
 ## 12 Python3 函数
 ## 13 Python3 数据结构
