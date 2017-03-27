@@ -283,6 +283,42 @@ False
 2. 字典的关键字必须为不可变类型，且不能重复。
 3. 创建空字典使用{ }。
 ## 04 Python3 解释器
+Linux/Unix的系统上，Python解释器通常被安装在 /usr/local/bin/python3.6 这样的有效路径（目录）里。
+可以将路径 /usr/local/bin 添加到 Linux/Unix 操作系统的环境变量中，这样就可以通过 shell 终端输入下面的命令来启动 Python 。
+```
+  $ Python 3.6.0
+```
+在Window系统下你可以通过以下命令来设置Python的环境变量，假设你的Python安装在 C:\Python36 下:
+```
+set path=%path%;C:\python36
+```
+### 4.1 交互式编程
+我们可以在命令提示符中输入 "python" 命令来启动 Python 解释器：
+```
+$ python
+Python 3.6 (default, Mar 27 2017, 09:25:04)
+[GCC 4.8.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+在 python 提示符中输入以下语句，然后按回车键查看运行效果：
+```
+>>> print ("Hello, Python!")
+Hello, Python!
+```
+当键入一个多行结构时，续行是必须的。我们可以看下如下 if 语句：
+```
+>>> the_world_is_flat = True
+>>> if the_world_is_flat:
+...     print("Be careful not to fall off!")
+...
+Be careful not to fall off!
+```
+### 4.2 脚本式编程
+将如下代码拷贝至hello.py文件中：
+```
+print ("Hello, Python!");
+```
 ## 05 Python3 注释
 ## 06 Python3 数字运算
 ## 07 Python3 字符串
