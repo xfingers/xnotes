@@ -16,6 +16,14 @@
   #!/usr/bin/python3
   print("Hello, Python!")
 ```
+将以上代码保存在hello.py文件中，并使用python命令执行该脚本文件
+```
+  $ python hello.py
+```
+以上命令输出结果为：
+```
+  Hello, Python!
+```
 ## 02 Python3 基础语法
 ## 03 Python3 基本数据类型
 ## 04 Python3 解释器
