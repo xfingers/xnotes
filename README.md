@@ -2,7 +2,8 @@
 逐步整理那些年学过的技能树吧o(∩_∩)o 
 ***
 # 代码篇
-## [Python 3 笔记](Python3Notes.md) (更新中) 
+## [Markdown 笔记](MarkdownNotes.md) （更新中）
+## [Python 3 笔记](Python3Notes.md) (已完成) 
 ## Django 笔记 （计划中）
 ## JavaScript 笔记 （计划中）
 ## PHP 笔记 （计划中）
@@ -28,7 +29,6 @@
 ## Qt 笔记 （计划中）
 ## XML 笔记 （计划中）
 ## 正则表达式 笔记 （计划中）
-## Markdown 笔记 （计划中）
 ***
 # 产品篇
 ## 产品经理方法论 （计划中）
