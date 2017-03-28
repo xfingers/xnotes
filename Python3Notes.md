@@ -1,5 +1,5 @@
 # Python 3 笔记 - 传说中的闲人
-## 01 Python3 概述
+## 第一章 Python3 概述
 > Python 的 3.0 版本，常被称为 Python 3000，或简称 Py3k。相对于 Python 的早期版本，这是一个较大的升级。为了不带入过多的累赘，Python 3.0 在设计的时候没有考虑向下兼容。
 
 ### 1.1 查看 Python 版本 : 
@@ -24,7 +24,7 @@
 ```
   Hello, Python!
 ```
-## 02 Python3 基础语法
+## 第二章 Python3 基础语法
 ### 2.1 编码
 默认情况下，Python3 源码文件以 UTF-8 编码，所有字符串都是 unicode 字符串。也可以为源码文件指定不同的编码:
 ```
@@ -61,7 +61,7 @@ Python 中的数有四种类型：整数、长整数、浮点数和复数。
 - Python 允许处理unicode字符串，加前缀 u 或 U，如 u"This is an unicode string"。
 - 字符串是不可变的。
 - 按字面意义级联字符串，如 "this ""is ""string "会被自动转换为 this is string。
-## 03 Python3 基本数据类型
+## 第三章 Python3 基本数据类型
 Python 中的变量不需要声明。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。在 Python 中，变量就是变量，它没有类型，我们所说的“类型”是变量所指的内存中对象的类型。
 Python 3 中有六个标准的数据类型：
 - Numbers (数字)
@@ -282,7 +282,7 @@ False
 1. 字典是一种映射类型，它的元素是键值对。
 2. 字典的关键字必须为不可变类型，且不能重复。
 3. 创建空字典使用{ }。
-## 04 Python3 解释器
+## 第四章 Python3 解释器
 Linux/Unix的系统上，Python解释器通常被安装在 /usr/local/bin/python3.6 这样的有效路径（目录）里。
 可以将路径 /usr/local/bin 添加到 Linux/Unix 操作系统的环境变量中，这样就可以通过 shell 终端输入下面的命令来启动 Python 。
 ```
@@ -345,7 +345,7 @@ $ chmod +x hello.py
 ```
 Hello, Python!
 ```
-## 05 Python3 注释
+## 第五章 Python3 注释
 确保对模块, 函数, 方法和行内注释使用正确的风格
 Python中的注释有单行注释和多行注释：
 Python中单行注释以#开头，例如：
@@ -374,7 +374,7 @@ print("Hello, World!")
 """
 print("Hello, World!")
 ```
-## 06 Python3 数字运算
+## 第六章 Python3 数字运算
 Python 解释器可以作为一个简单的计算器：您可以在解释器里输入一个表达式，它将输出表达式的值。
 表达式的语法很直白： +, -, * 和/ 和在许多其它语言（如Pascal或C）里一样；括号可以用来为运算分组。例如：
 ```
@@ -441,7 +441,7 @@ NameError: name 'n' is not defined
 113.06
 ```
 此处， _ 变量应被用户视为只读变量。不要显式地给它赋值——这样您将会创建一个具有相同名称的独立的本地变量，并且屏蔽了这个内置变量的功能。
-## 07 Python3 字符串
+## 第七章 Python3 字符串
 除了数字，Python也能操作字符串。字符串有几种表达方式，可以使用单引号或双引号括起来：
 ```
 >>> 'spam eggs'
@@ -622,7 +622,7 @@ IndexError: string index out of range
 >>> len(s)
 34
 ```
-## 08 Python3 列表
+## 第八章 Python3 列表
 Python囊括了大量的复合数据类型，用于组织其它数值。最有用的是列表，即写在方括号之间、用逗号分隔开的数值列表。列表内的项目不必全是相同的类型。
 ```
 >>> a = ['spam', 'eggs', 100, 1234]
@@ -704,7 +704,7 @@ Python 字符串是固定的，列表可以改变其中的元素：
 >>> x[0][1]
 'b'
 ```
-## 09 Python3 编程第一步
+## 第九章 Python3 编程第一步
 现在，我们能使用Python完成比 2+2 更复杂的工作。在下例里，我们能写出一个初步的斐波纳契数列如下：
 ```
 >>> # Fibonacci series: 斐波纳契数列
@@ -737,7 +737,7 @@ The value of i is 65536
 ...
 1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,
 ```
-## 10 Python3 条件控制：if 语句
+## 第十章 Python3 条件控制：if 语句
 Python中if语句的一般形式如下所示：
 ```
 if condition_1:
@@ -814,7 +814,7 @@ while guess != number:
     elif guess > number:
         print("It's not so big.")
 ```
-## 11 Python3 循环
+## 第十一章 Python3 循环
 Python中的循环语句有 for 和 while。
 ### 11.1 while 循环
 以下实例使用了 while 来计算 1 到 100 的总和：
@@ -974,7 +974,7 @@ pass语句什么都不做。它只在语法上需要一条语句但程序不需�
 >>> class MyEmptyClass:
 ...     pass
 ```
-## 12 Python3 函数
+## 第十二章 Python3 函数
 Python 定义函数使用 def 关键字，一般格式如下：
 ```
 def  函数名（参数列表）：
@@ -1095,7 +1095,7 @@ print(arithmetic_mean())
 45
 0
 ```
-## 13 Python3 数据结构
+## 第十三章 Python3 数据结构
 ### 13.1 列表
 Python中列表是可变的，这是它区别于字符串和元组的最重要的特点，一句话概括即：列表可以修改，而字符串和元组不能。
 以下是 Python 中列表的方法：
@@ -1440,7 +1440,40 @@ banana
 orange
 pear
 ```
-## 14 Python3 模块
+## 第十四章 Python3 模块
+在前面的几个章节中我们脚本上是用python解释器来编程，如果你从Python解释器退出再进入，那么你定义的所有的方法和变量就都消失了。
+为此 Python 提供了一个办法，把这些定义存放在文件中，为一些脚本或者交互式的解释器实例使用，这个文件被称为模块。
+模块是一个包含所有你定义的函数和变量的文件，其后缀名是.py。模块可以被别的程序引入，以使用该模块中的函数等功能。这也是使用python标准库的方法。下面是一个使用python标准库中模块的例子。
+```
+#!/usr/bin/python3
+# Filename: using_sys.py
+ 
+import sys
+ 
+print('命令行参数如下:')
+for i in sys.argv:
+    print(i)
+ 
+print('/n/nThe PYTHONPATH is', sys.path, '/n')
+```
+执行结果如下所示：
+```
+D:\python36\src>python using_sys.py 参数1 参数2
+命令行参数如下:
+using_sys.py
+参数1
+参数2
+/n/nThe PYTHONPATH is ['E:\\python33\\src', 'C:\\Windows\\system32\\python33.zip
+', 'E:\\python33\\DLLs', 'E:\\python33\\lib', 'E:\\python33', 'E:\\python33\\lib
+\\site-packages'] /n
+```
+- 1、import sys引入python标准库中的sys.py模块；这是引入某一模块的方法。
+- 2、sys.argv是一个包含命令行参数的列表。
+- 3、sys.path包含了一个Python解释器自动查找所需模块的路径的列表。
+当我们使用import语句的时候，Python解释器是怎样找到对应的文件的呢？
+这就涉及到Python的搜索路径，搜索路径是由一系列目录名组成的，Python解释器就依次从这些目录中去寻找锁引入的模块。
+这看起来很像环境变量，事实上，也可以通过定义环境变量的方式来确定搜索路径。
+搜索路径是在Python编译或安装的时候确定的，安装新的库应该也会修改。搜索路径被存储在sys模块中的path变量，做一个简单的实验，在交互式解释器中，输入以下代码：
 ## 15 Python3 输入和输出
 ## 16 Python3 错误和异常
 ## 17 Python3 类
