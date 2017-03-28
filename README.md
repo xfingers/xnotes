@@ -2,9 +2,9 @@
 逐步整理那些年学过的技能树吧o(∩_∩)o 
 ***
 # 代码篇
-## [Markdown 笔记](MarkdownNotes.md) （更新中）
+## [Markdown 笔记](MarkdownNotes.md) （已完成）
 ## [Python 3 笔记](Python3Notes.md) (已完成) 
-## Django 笔记 （计划中）
+## [Django 笔记](DjangoNotes.md) （更新中）
 ## JavaScript 笔记 （计划中）
 ## PHP 笔记 （计划中）
 ## HMTL5 笔记 （计划中）
