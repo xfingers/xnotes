@@ -120,7 +120,7 @@ Markdown 的粗体和斜体也非常简单，用两个 * 包含一段文本就�
 
 ### Windows、iOS、Web 平台
 
-- 笔者并未使用过 Windows 下的 Markdown 工具，但经朋友介绍，有两款还算不错，一款叫 MarkdownPad ，另一款叫 MarkPad。
+- 有两款还算不错，一款叫 MarkdownPad ，另一款叫 MarkPad。
 
 - iOS 端已有相当多的 app 支持 Markdown 语法编辑，例如 Drafts、Day One、iA Writer 等。
 
@@ -128,4 +128,4 @@ Markdown 的粗体和斜体也非常简单，用两个 * 包含一段文本就�
 
 - 同样是 Web 端，Draftin 这款在线 MD 编辑器也近乎完美。
 
-- 作为全球最大的男性同性交友平台，github社区的桌面端 [Github Desktop](http://www.github.com) 和 其Web端也是极力推荐的平台，创建文件时注意将后缀名保存为 ` .md `即可。
+- 作为全球最大的男性同性交友平台，github社区的桌面端 [Github Desktop](http://www.github.com) 和 其Web端也是极力推荐的平台，创建文件时注意将后缀名保存为 ` .md ` 即可。
