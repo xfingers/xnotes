@@ -112,3 +112,20 @@ Markdown 的粗体和斜体也非常简单，用两个 * 包含一段文本就�
 ## 分割线
 
 分割线的语法只需要另起一行，连续输入三个星号 ` *** ` 即可。
+
+## Markdown书写工具
+### Mac平台
+- 在 Mac OS X 上，我强烈建议你用 Mou 这款免费且十分好用的 Markdown 编辑器，它支持实时预览，既左边是你编辑 Markdown 语言，右边会实时的生成预览效果，笔者文章就是 Mou 这款应用写出来的。
+- 其次还有很多同类选择。如果你是个编辑作者，我强烈建议你购买 Ulysses Ⅲ，这款应用入围了苹果去年 Mac App Store 的 The Best of 2013，相比 Mou 它支持更多的写作格式、多文档的支持。Mou、iA Writer 这些应用都是基于单文档的管理方式，而 Ulysses Ⅲ 支持 Folder、Filter 的管理，一个 Folder 里面可以创建多个 Sheet，Sheet 之间还可以进行 Combine 处理。
+
+### Windows、iOS、Web 平台
+
+- 笔者并未使用过 Windows 下的 Markdown 工具，但经朋友介绍，有两款还算不错，一款叫 MarkdownPad ，另一款叫 MarkPad。
+
+- iOS 端已有相当多的 app 支持 Markdown 语法编辑，例如 Drafts、Day One、iA Writer 等。
+
+- Web 端上，我强烈推荐 简书 这款产品，上面有无数热爱文字的人在不停的创造、分享。在 Web 端使用 Markdown 没有比简书更舒服的地方了，它同样支持左右两栏的实时预览，字体优雅、简洁。
+
+- 同样是 Web 端，Draftin 这款在线 MD 编辑器也近乎完美。
+
+- 作为全球最大的男性同性交友平台，github社区的桌面端 [Github Desktop](http://www.github.com) 和 其Web端也是极力推荐的平台，创建文件时注意将后缀名保存为 ` .md `即可。
