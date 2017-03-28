@@ -19,7 +19,7 @@ Django 是由 Python 开发的一个免费的开源网站框架，可以用于�
 ## 16 Django 部署(Nginx)
 ## 17 Django 发送邮件
 ***
-#中级
+# 中级
 ## 18 Django 数据导入
 ## 19 Django 数据迁移
 ## 20 Django 多数据库联用
@@ -40,6 +40,6 @@ Django 是由 Python 开发的一个免费的开源网站框架，可以用于�
 ## 35 Django 微信接口
 ## 36 Django 单元测试
 ***
-#项目实战
+# 项目实战
 ## 开发内容管理系统
 ## 开发ERP
