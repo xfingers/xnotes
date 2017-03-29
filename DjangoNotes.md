@@ -56,7 +56,7 @@ C. Linux, Mac OSX, Windows 下都可以用[get-pip.py](https://pip.pypa.io/en/la
 ```
 (sudo) pip install Django
 或者
-(sudo) pip install Django==1.10.5
+(sudo) pip install Django==1.10.6
 ```
 如果想升级 pip 可以用：
 ```
@@ -68,7 +68,7 @@ C. Linux, Mac OSX, Windows 下都可以用[get-pip.py](https://pip.pypa.io/en/la
 
 - Linux 或 Mac 下
 ```
-tar -xvf django-1.8.16.tar.gz
+tar -xvf django-1.10.6.tar.gz
 cd django-1.8.16
 (sudo) python setup.py install
 ```
@@ -79,7 +79,7 @@ cd django-1.8.16
 比如在 D:\django-1.10.6\  这个文件夹下
 ```
 cd D:
-cd django-1.8.16
+cd django-1.10.6
 python setup.py install
 ```
 #### (3) Linux 用自带源进行安装(不推荐)
