@@ -23,7 +23,7 @@ Django 中提供了开发网站经常用到的模块，常见的代码都为你�
 - views.py : 处理用户发出的请求，从urls.py中对应过来, 通过渲染templates中的网页可以将显示内容，比如登陆后的用户名，用户请求的数据，输出到网页。
 - models.py : 与数据库操作相关，存入或读取数据时用到这个，当然用不到数据库的时候 你可以不使用。
 - forms.py : 表单，用户在浏览器上输入数据提交，对数据的验证工作以及输入框的生成等工作，当然你也可以不使用。
-> ** templates 文件夹 **: views.py 中的函数渲染templates中的Html模板，得到动态内容的网页，当然可以用缓存来提高速度。
+> templates 文件夹: views.py 中的函数渲染templates中的Html模板，得到动态内容的网页，当然可以用缓存来提高速度。
 - admin.py : 后台，可以用很少量的代码就拥有一个强大的后台。
 - settings.py : Django 的设置，配置文件，比如 DEBUG 的开关，静态文件的位置等。
 
@@ -43,34 +43,38 @@ Django 1.10.x 支持 Python 2.7, 3.4 和 3.5.
 > 注意：以下方法中任何一种方法安装都可，不用每个都试一次。另外 建议自行安装 ipython，这样在用起来会爽很多。进入终端的时候输入 ipython 可以有提示。当然也可以选择用 bpython
 #### (1) 用pip来安装
 - 先安装 pip（最简单的办法就是安装python3.6，里面已经集成了pip。）
-    -ubuntu：
-    ```
-    sudo apt-get install python-pip
-    ```
-    -Fedora
-    ```
-    yum install python-pip
-    ```
-    -Linux, Mac OSX, Windows 下都可以用[get-pip.py](https://pip.pypa.io/en/latest/installing/) 来安装。
+A. Ubuntu：
+```
+sudo apt-get install python-pip
+```
+B. Fedora
+```
+yum install python-pip
+```
+C. Linux, Mac OSX, Windows 下都可以用[get-pip.py](https://pip.pypa.io/en/latest/installing/) 来安装。
 - 利用 pip 安装 Django
-  ```
-  (sudo) pip install Django
-  或者
-  (sudo) pip install Django==1.10.5
-  ```
+```
+(sudo) pip install Django
+或者
+(sudo) pip install Django==1.10.5
+```
 如果想升级 pip 可以用：
 ```
 (sudo) pip install --upgrade pip
 ```
 #### (2) 下载源码安装:https://www.djangoproject.com/download/
+
 如果是源码包，比如 django-1.10.6.tar.gz
+
 - Linux 或 Mac 下
 ```
 tar -xvf django-1.8.16.tar.gz
 cd django-1.8.16
 (sudo) python setup.py install
 ```
+
 - Windows 下
+
 直接用解压软件解压，然后到命令行（XP/Win7/Win10点击开始，在下面的那个输入框中输入 cmd, 回车运行)
 比如在 D:\django-1.10.6\  这个文件夹下
 ```
@@ -79,6 +83,7 @@ cd django-1.8.16
 python setup.py install
 ```
 #### (3) Linux 用自带源进行安装(不推荐)
+
 - ubuntu 下安装 Django
 ```
 sudo apt-get install python-django -y
@@ -87,6 +92,7 @@ sudo apt-get install python-django -y
 ```
 yum install python-django
 ```
+
 **注意**：自带源安装的 Django 一般版本比较旧，而用 pip 可以安装最新的版本。
 ### 检查是否安装成功
 终端上输入 python ,点击 Enter，进行 python 环境
@@ -96,9 +102,9 @@ Python 3.6.0 (v3.6.0:41df79263a11, Dec 23 2016, 08:06:12) [MSC v.1900 64 bit (AM
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import django
 >>> django.VERSION
-(1, 10, 6, 'final', 0)
+(1, 10, 6, "final", 0)
 >>> django.get_version()
-'1.10.6'
+"1.10.6"
 >>>
 ```
 如果运行后看到版本号，就证明安装成功了
@@ -109,36 +115,50 @@ Type "help", "copyright", "credits" or "license" for more information.
 如果不想搭建这个环境，只想用某一个版本的 Django 也可以，但是推荐学习此内容！
 ##### (1) 环境搭建
 开发会用 virtualenv 来管理多个开发环境，virtualenvwrapper 使得virtualenv变得更好用
+
 ```
 # 安装:
 (sudo) pip install virtualenv virtualenvwrapper
 ```
+
 **Linux/Mac OSX 下**：
+
 修改~/.bash_profile或其它环境变量相关文件(如 .bashrc 或用 ZSH 之后的 .zshrc)，添加以下语句
+
 ```
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/workspace
 source /usr/local/bin/virtualenvwrapper.sh
 ```
+
 修改后使之立即生效(也可以重启终端使之生效)：
+
 ```
 source ~/.bash_profile
 ```
+
 **Windows 下**：
+
 ```
 pip install virtualenvwrapper-win
 ```
-> 可选:Windows下默认虚拟环境是放在用户名下面的Envs中的，与桌面，我的文档，下载等文件夹在一块的。更改方法：计算机，属性，高级系统设置，环境变量
+
+> 可选:Windows下默认虚拟环境是放在用户名下面的Envs中的，与桌面，我的文档，下载等文件夹在一块的。更改方法：计算机，属性，高级系统设置，环境变量。
+
 ##### (2) 使用方法
+
 - mkvirtualenv djdemo：创建运行环境zqxt
 - workon djdemo: 工作在 zqxt 环境 或 从其它环境切换到 zqxt 环境
 - deactivate: 退出终端环境
+
 其他的：
+
 - rmvirtualenv ENV：删除运行环境ENV
 - mkproject mic：创建mic项目和运行环境mic
 - mktmpenv：创建临时运行环境
 - lsvirtualenv: 列出可用的运行环境
 - lssitepackages: 列出当前环境安装了的包
+
 创建的环境是独立的，互不干扰，无需sudo权限即可使用 pip 来进行包的管理。
 
 ## 03 Django 基本命令
