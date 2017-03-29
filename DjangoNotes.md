@@ -41,8 +41,8 @@ Django 1.10.x 支持 Python 2.7, 3.4 和 3.5.
 当然如果需要新版本的功能也可以使用新版本，毕竟 Django 1.9 以后admin界面还是更漂亮些 
 ### 安装 Django
 > 注意：以下方法中任何一种方法安装都可，不用每个都试一次。另外 建议自行安装 ipython，这样在用起来会爽很多。进入终端的时候输入 ipython 可以有提示。当然也可以选择用 bpython
-- 用pip来安装
-#### (1)先安装 pip（最简单的办法就是安装python3.6，里面已经集成了pip。）
+#### (1) 用pip来安装
+- 先安装 pip（最简单的办法就是安装python3.6，里面已经集成了pip。）
     -ubuntu：
     ```
     sudo apt-get install python-pip
@@ -52,26 +52,25 @@ Django 1.10.x 支持 Python 2.7, 3.4 和 3.5.
     yum install python-pip
     ```
     -Linux, Mac OSX, Windows 下都可以用[get-pip.py](https://pip.pypa.io/en/latest/installing/) 来安装。
-#### (2)利用 pip 安装 Django
+- 利用 pip 安装 Django
   ```
   (sudo) pip install Django
   或者
   (sudo) pip install Django==1.10.5
   ```
-  
 如果想升级 pip 可以用：
 ```
 (sudo) pip install --upgrade pip
 ```
-- 下载源码安装:https://www.djangoproject.com/download/
+#### (2) 下载源码安装:https://www.djangoproject.com/download/
 如果是源码包，比如 django-1.10.6.tar.gz
-##### (1)Linux 或 Mac 下
+- Linux 或 Mac 下
 ```
 tar -xvf django-1.8.16.tar.gz
 cd django-1.8.16
 (sudo) python setup.py install
 ```
-##### (2)Windows 下
+- Windows 下
 直接用解压软件解压，然后到命令行（XP/Win7/Win10点击开始，在下面的那个输入框中输入 cmd, 回车运行)
 比如在 D:\django-1.10.6\  这个文件夹下
 ```
@@ -79,12 +78,12 @@ cd D:
 cd django-1.8.16
 python setup.py install
 ```
-- Linux 用自带源进行安装(不推荐)
-##### (1) ubuntu 下安装 Django
+#### (3) Linux 用自带源进行安装(不推荐)
+- ubuntu 下安装 Django
 ```
 sudo apt-get install python-django -y
 ```
-##### (2) Fedora 下安装用 yum
+- Fedora 下安装用 yum
 ```
 yum install python-django
 ```
@@ -108,7 +107,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 有的时候会发现，一个电脑上有多个项目，一个依赖 Django 1.8，另一个比较旧的项目又要用 Django 1.5，这时候怎么办呢？
 我们需要一个依赖包管理的工具来处理不同的环境。
 如果不想搭建这个环境，只想用某一个版本的 Django 也可以，但是推荐学习此内容！
-##### (1)环境搭建
+##### (1) 环境搭建
 开发会用 virtualenv 来管理多个开发环境，virtualenvwrapper 使得virtualenv变得更好用
 ```
 # 安装:
@@ -130,7 +129,7 @@ source ~/.bash_profile
 pip install virtualenvwrapper-win
 ```
 > 可选:Windows下默认虚拟环境是放在用户名下面的Envs中的，与桌面，我的文档，下载等文件夹在一块的。更改方法：计算机，属性，高级系统设置，环境变量
-##### (2)使用方法
+##### (2) 使用方法
 - mkvirtualenv djdemo：创建运行环境zqxt
 - workon djdemo: 工作在 zqxt 环境 或 从其它环境切换到 zqxt 环境
 - deactivate: 退出终端环境
