@@ -1,7 +1,7 @@
 # Django 笔记 - 传说中的闲人
 # 基础
 ## 01 Django 概述
-Python下有许多款不同的 Web 框架。Django是重量级选手中最有代表性的一位。许多成功的网站和APP都基于Django。Django 是由 Python 开发的一个免费的开源网站框架，由Python写成，可以用于快速搭建高性能、优雅的网站！Django遵守BSD版权，初次发布于2005年7月, 并于2008年9月发布了第一个正式版本1.0 。
+Python下有许多款不同的 Web 框架。Django 是重量级选手中最有代表性的一位。许多成功的网站和 APP 都基于 Django。 Django 是由 Python 开发的一个免费的开源网站框架，由 Python 写成，可以用于快速搭建高性能、优雅的网站！Django 遵守 BSD 版权，初次发布于2005年7月, 并于2008年9月发布了第一个正式版本1.0 。
 Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。
 Django 中提供了开发网站经常用到的模块，常见的代码都为你写好了，通过减少重复的代码，Django 使你能够专注于 web 应用上有 趣的关键性的东西。为了达到这个目标，Django 提供了通用Web开发模式的高度抽象，提供了频繁进行的编程作业的快速解决方法，以及为“如何解决问题”提供了清晰明了的约定。Django的理念是DRY(Don't Repeat Yourself)来鼓励快速开发！
 
@@ -119,14 +119,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 我们需要一个依赖包管理的工具来处理不同的环境。
 如果不想搭建这个环境，只想用某一个版本的 Django 也可以，但是推荐学习此内容！
 ##### (1) 环境搭建
-开发会用 virtualenv 来管理多个开发环境，virtualenvwrapper 使得virtualenv变得更好用
+开发会用 virtualenv 来管理多个开发环境，virtualenvwrapper 使得 virtualenv 变得更好用
 
 ```
 # 安装:
 (sudo) pip install virtualenv virtualenvwrapper
 ```
 
-**Linux/Mac OSX 下**：
+**Linux/Mac OSX 下** ：
 
 修改~/.bash_profile或其它环境变量相关文件(如 .bashrc 或用 ZSH 之后的 .zshrc)，添加以下语句
 
@@ -136,35 +136,35 @@ export PROJECT_HOME=$HOME/workspace
 source /usr/local/bin/virtualenvwrapper.sh
 ```
 
-修改后使之立即生效(也可以重启终端使之生效)：
+修改后使之立即生效(也可以重启终端使之生效) ：
 
 ```
 source ~/.bash_profile
 ```
 
-**Windows 下**：
+**Windows 下** ：
 
 ```
 pip install virtualenvwrapper-win
 ```
 
-> 可选:Windows下默认虚拟环境是放在用户名下面的Envs中的，与桌面，我的文档，下载等文件夹在一块的。更改方法：计算机，属性，高级系统设置，环境变量。
+> 可选 : Windows 下默认虚拟环境是放在用户名下面的 Envs 中的，与桌面，我的文档，下载等文件夹在一块的。更改方法：计算机，属性，高级系统设置，环境变量。
 
 ##### (2) 使用方法
 
-- mkvirtualenv djdemo：创建运行环境zqxt
-- workon djdemo: 工作在 zqxt 环境 或 从其它环境切换到 zqxt 环境
+- mkvirtualenv djdemo：创建运行环境 djdemo
+- workon djdemo: 工作在 djdemo 环境 或 从其它环境切换到 djdemo 环境
 - deactivate: 退出终端环境
 
 其他的：
 
 - rmvirtualenv ENV：删除运行环境ENV
-- mkproject mic：创建mic项目和运行环境mic
+- mkproject mic：创建 mic 项目和运行环境 mic
 - mktmpenv：创建临时运行环境
 - lsvirtualenv: 列出可用的运行环境
 - lssitepackages: 列出当前环境安装了的包
 
-创建的环境是独立的，互不干扰，无需sudo权限即可使用 pip 来进行包的管理。
+创建的环境是独立的，互不干扰，无需 sudo 权限即可使用 pip 来进行包的管理。
 
 ## 03 Django 基本命令
 ## 04 Django 视图与网址
