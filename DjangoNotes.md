@@ -254,6 +254,130 @@ Django 会自动进入在settings.py中设置的数据库，如果是 MySQL 或 
 
 
 ## 04 Django 视图与网址
+> Django中网址是写在 urls.py 文件中，用正则表达式对应 views.py 中的一个函数(或者generic类)
+### (1) 新建一个项目(project), 名称为 mysite
+```
+django-admin startproject mysite
+```
+**备注**：
+1. 如果 django-admin 不行，请用 django-admin.py
+2. 如果是在Linux是用源码安装的，或者用 pip 安装的，也是用  django-admin.py 命令
+运行后,如果成功的话, 我们会看到如下的目录样式   (没有成功的请参见环境搭建一节)：
+```
+mysite
+├── manage.py
+└── mysite
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+```
+> 执行命令后，新建了一个 mysite 目录，其中还有一个 mysite 目录，这个子目录 mysite 中是一些项目的设置 settings.py 文件，总的urls配置文件 urls.py 以及部署服务器时用到的 wsgi.py 文件， __init__.py 是python包的目录结构必须的，与调用有关。
+进入外层那个 mysite 目录下(不是mysite中的mysite目录)
+
+### (2) 新建一个应用(app), 名称叫 learn
+```
+python manage.py startapp learn # learn 是一个app的名称
+```
+可以看到mysite中多个一个 learn 文件夹，其中有以下文件。
+```
+learn/
+├── __init__.py
+├── admin.py
+├── models.py
+├── tests.py
+└── views.py
+```
+> 注：Django 1.8.x 以上的，还有一个 migrations 文件夹。Django 1.9.x 还会在 Django 1.8 的基础上多出一个 apps.py 文件。但是这些都与本文无关。
+把我们新定义的app加到settings.py中的INSTALL_APPS中
+修改 mysite/mysite/settings.py
+
+```
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+ 
+    'learn',
+)
+```
+**备注**:这一步是干什么呢? 新建的 app 如果不加到 INSTALL_APPS 中的话, django 就不能自动找到app中的模板文件(app-name/templates/下的文件)和静态文件(app-name/static/中的文件) , 后面你会学习到它们分别用来干什么.
+
+### (3) 定义视图函数（访问页面时的内容）
+在learn这个目录中,把views.py打开,修改其中的源代码,改成下面的
+```
+#coding:utf-8
+from django.http import HttpResponse
+ 
+def index(request):
+    return HttpResponse(u"欢迎光临 产品草堂!")
+```
+第一行是声明编码为utf-8, 因为我们在代码中用到了中文,如果不声明就报错.
+
+第二行引入HttpResponse，它是用来向网页返回内容的，就像Python中的 print 一样，只不过 HttpResponse 是把内容显示到网页上。
+
+我们定义了一个index()函数，第一个参数必须是 request，与网页发来的请求有关，request 变量里面包含get或post的内容，用户浏览器，系统等信息在里面（后面会讲，先了解一下就可以）。
+函数返回了一个 HttpResponse 对象，可以经过一些处理，最终显示几个字到网页上。
+那问题来了，我们访问什么网址才能看到刚才写的这个函数呢？怎么让网址和函数关联起来呢？
+### (4) 定义视图函数相关的URL(网址)  （即规定 访问什么网址对应什么内容）
+打开 mysite/mysite/urls.py 这个文件, 修改其中的代码:
+由于 Django 版本对 urls.py 进行了一些更改：
+Django 1.7.x 及以下的同学可能看到的是这样的：
+```
+from django.conf.urls import patterns, include, url
+ 
+from django.contrib import admin
+admin.autodiscover()
+ 
+urlpatterns = patterns('',
+    url(r'^$', 'learn.views.index'),  # new
+    # url(r'^blog/', include('blog.urls')),
+ 
+    url(r'^admin/', include(admin.site.urls)),
+)
+```
+Django 1.8.x及以上，Django 官方鼓励（或说要求）先引入，再使用：
+```
+from django.conf.urls import url
+from django.contrib import admin
+from learn import views as learn_views  # new
+ 
+urlpatterns = [
+    url(r'^$', learn_views.index),  # new
+    url(r'^admin/', admin.site.urls),
+]
+```
+以上都修改并保存后,我们来看一下效果!
+
+在终端上运行 python manage.py runserver 我们会看到类似下面的信息:
+```
+$ python manage.py runserver
+ 
+Performing system checks...
+ 
+System check identified no issues (0 silenced).
+ 
+You have unapplied migrations; your app may not work properly until they are applied.
+Run 'python manage.py migrate' to apply them.
+ 
+December 22, 2015 - 11:57:33
+Django version 1.9, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
+我们打开浏览器,访问 http://127.0.0.1:8000/
+**注意**：如果是在另一台电脑上访问要用 python manage.py ip:port 的形式，比如监听所有ip:
+```
+python manage.py runserver 0.0.0.0:8000
+ 
+监听机器上所有ip 8000端口，访问时用电脑的ip代替 127.0.0.1
+```
+Django中的 urls.py 用的是正则进行匹配的，如果不熟悉，您可以学习正则表达式以及Python正则表达式。
+
+
 ## 05 Django URL name详解
 ## 06 Django 模板(templates)
 ## 07 Django 模型(数据库)
