@@ -5,10 +5,10 @@
 ## [Markdown 笔记](MarkdownNotes.md) （已完成）
 ## [Python 3 笔记](Python3Notes.md) (已完成) 
 ## [Django 笔记](DjangoNotes.md) （更新中）
-## JavaScript 笔记 （计划中）
 ## PHP 笔记 （计划中）
 ## HMTL5 笔记 （计划中）
 ## CSS3 笔记 （计划中）
+## JavaScript 笔记 （计划中）
 ## Ajax 笔记 （计划中）
 ## NodeJS 笔记 （计划中）
 ## ExtJS5 笔记 （计划中）
@@ -30,6 +30,15 @@
 ## XML 笔记 （计划中）
 ## 正则表达式 笔记 （计划中）
 ***
+# 数据库篇
+## SQL 笔记
+## MySQL 笔记
+## SQLite 笔记
+## Mongo DB 笔记
+## PostgreSQL 笔记
+## Redis 笔记
+## Memcached 笔记
+***
 # 产品篇
 ## 产品经理方法论 （计划中）
 ## 产品经理实战 （计划中）
@@ -46,9 +55,15 @@
 ## 微信设计规范 （计划中）
 ***
 # 架构篇
+## MVC 笔记 （计划中）
 ## Hadoop 笔记 （计划中）
 ## Spark 笔记 （计划中）
 ## Docker 笔记 （计划中）
+***
+# 服务篇
+## Apache 笔记 （计划中）
+## Nignx 笔记 （计划中）
+## Tomcat 笔记 （计划中）
 ***
 # 项目篇
 ## PMP 笔记 （计划中）
@@ -63,3 +78,4 @@
 ## SPSS 笔记 （计划中）
 ## Weka 笔记 （计划中）
 ## Kali渗透测试 笔记 （计划中）
+
