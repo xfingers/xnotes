@@ -322,6 +322,7 @@ def index(request):
 我们定义了一个index()函数，第一个参数必须是 request，与网页发来的请求有关，request 变量里面包含get或post的内容，用户浏览器，系统等信息在里面（后面会讲，先了解一下就可以）。
 函数返回了一个 HttpResponse 对象，可以经过一些处理，最终显示几个字到网页上。
 那问题来了，我们访问什么网址才能看到刚才写的这个函数呢？怎么让网址和函数关联起来呢？
+
 ### (4) 定义视图函数相关的URL(网址)  （即规定 访问什么网址对应什么内容）
 打开 mysite/mysite/urls.py 这个文件, 修改其中的代码:
 由于 Django 版本对 urls.py 进行了一些更改：
@@ -377,6 +378,101 @@ python manage.py runserver 0.0.0.0:8000
 ```
 Django中的 urls.py 用的是正则进行匹配的，如果不熟悉，您可以学习正则表达式以及Python正则表达式。
 
+### (5) 在网页上做加减法
+#### 采用 /add/?a=4&b=5 这样GET方法进行
+```
+django-admin.py startproject calc_views
+cd calc
+python manage.py startapp calc
+```
+自动生成目录大致如下（因不同的 Django 版本有一些差异，如果差异与这篇文章相关，我会主动提出来，没有说的，暂时可以忽略他们之间的差异，后面的教程也是这样做）：
+```
+calc_views/
+├── calc
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── manage.py
+└── calc_views
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+```
+修改一下 calc/views.py文件
+```
+from django.shortcuts import render
+from django.http import HttpResponse
+ 
+def add(request):
+    a = request.GET['a']
+    b = request.GET['b']
+    c = int(a)+int(b)
+    return HttpResponse(str(c))
+```
+**注**：request.GET 类似于一个字典，更好的办法是用 request.GET.get('a', 0) 当没有传递 a 的时候默认 a 为 0
+接着修改 calc_views/urls.py 文件，添加一个网址来对应我们刚才新建的视图函数。
+
+Django 1.7.x 及以下的同学可能看到的是这样的：
+```
+from django.conf.urls import patterns, include, url
+ 
+from django.contrib import admin
+admin.autodiscover()
+ 
+urlpatterns = patterns('',
+    # Examples:
+    url(r'^add/$', 'calc.views.add', name='add'), # 注意修改了这一行
+    # url(r'^blog/', include('blog.urls')),
+ 
+    url(r'^admin/', include(admin.site.urls)),
+)
+```
+Django 1.8.x及以上，Django 官方鼓励（或说要求）先引入，再使用。
+```
+from django.conf.urls import url
+from django.contrib import admin
+from calc import views as calc_views
+ 
+ 
+urlpatterns = [
+    url(r'^add/$', calc_views.add, name='add'),  # 注意修改了这一行
+    url(r'^admin/', admin.site.urls),
+]
+```
+注意：低版本的 Django 也可以先引入，再使用
+
+打开开发服务器并访问
+```
+python manage.py runserver
+# 如果提示 Error: That port is already in use.在后面加上端口号8001,8888等
+python manage.py runserver 8001
+```
+打开网址：http://127.0.0.1:8000/add/ 就可以看到 **MultiValueDictKeyError at /add/**
+
+这是因为我们并没有传值进去，我们在后面加上 ` ?a=4&b=5 ` ，即访问 http://127.0.0.1:8000/add/?a=4&b=5 就可以看到网页上显示一个 9，试着改变一下a和b对应的值试试看？
+
+#### 采用 /add/3/4/ 这样的网址的方式
+面介绍的时候就说过 Django 支持优雅的网址
+我们接着修改 calc/views.py文件，再新定义一个add2 函数，原有部分不再贴出
+```
+def add2(request, a, b):
+    c = int(a) + int(b)
+    return HttpResponse(str(c))
+```
+接着修改 calc_views/urls.py 文件，再添加一个新的 url
+Django 1.7.x 及以下：
+```
+url(r'^add/(\d+)/(\d+)/$', 'calc.views.add2', name='add2'),
+```
+Django 1.8.x 及以上：
+```
+url(r'^add/(\d+)/(\d+)/$', calc_views.add2, name='add2'),
+```
+可以看到网址中多了 (\d+), 正则表达式中 \d 代表一个数字，+ 代表一个或多个前面的字符，写在一起 \d+ 就是一个或多个数字，用括号括起来的意思是保存为一个子组（更多知识请参见 Python 正则表达式），每一个子组将作为一个参数，被 views.py 中的对应视图函数接收。
+再访问 http://127.0.0.1:8000/add/4/5/ 就可以看到和刚才同样的效果，但是这回网址更优雅了
 
 ## 05 Django URL name详解
 ## 06 Django 模板(templates)
