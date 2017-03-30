@@ -475,6 +475,11 @@ url(r'^add/(\d+)/(\d+)/$', calc_views.add2, name='add2'),
 再访问 http://127.0.0.1:8000/add/4/5/ 就可以看到和刚才同样的效果，但是这回网址更优雅了
 
 ## 05 Django URL name详解
+基于上一节的代码来开始这一节的内容。笔记中所有的文件，没有特别说明的，都是以 utf8 格式编码的，请养成这个习惯。
+
+
+
+
 ## 06 Django 模板(templates)
 ## 07 Django 模型(数据库)
 ## 08 Django 自定义 Field
