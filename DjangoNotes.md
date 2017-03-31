@@ -625,8 +625,708 @@ url(r'^new_add/(\d+)/(\d+)/$', calc_views.add2, name='add2'),
 开始可能觉得直接写网址简单，但是用多了你一定会发现，用“死网址”的方法很糟糕。
 
 ## 06 Django 模板(templates)
+在前面的几节中我们都是用简单的 django.http.HttpResponse 来把内容显示到网页上，本节将讲解如何使用渲染模板的方法来显示内容。
+### (1) 创建一个 zqxt_tmpl 项目，和一个 名称为 learn 的应用
+```
+django-admin.py startproject zqxt_tmpl
+cd zqxt_tmpl
+python manage.py startapp learn
+```
+### (2) 把 learn 加入到 settings.INSTALLED_APPS中
+```
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+ 
+    'learn',
+)
+```
+### (3) 打开 learn/views.py 写一个首页的视图
+```
+from django.shortcuts import render
+ 
+ 
+def home(request):
+    return render(request, 'home.html')
+```
+### (4) 在 learn目录下新建一个 templates 文件夹，里面新建一个 home.html
+默认配置下，Django 的模板系统会自动找到app下面的templates文件夹中的模板文件。
+目录的结构是这样的：
+```
+zqxt_tmpl
+├── learn
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── templates
+│   │   └── home.html
+│   ├── tests.py
+│   └── views.py
+├── manage.py
+└── zqxt_tmpl
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+```
+### (5) 在 home.html 中写一些内容
+<!DOCTYPE html>
+<html>
+<head>
+    <title>欢迎光临</title>
+</head>
+<body>
+欢迎光临产品客栈
+</body>
+</html>
+### (6) 将视图函数对应到网址，更改 zqxt_tmpl/urls.py
+Django 1.7.x 及以下可以这样：
+```
+from django.conf.urls import include, url
+from django.contrib import admin
+ 
+ 
+urlpatterns = [
+    url(r'^$', 'learn.views.home', name='home'),  # new
+    # url(r'^blog/', include('blog.urls')),
+ 
+    url(r'^admin/', include(admin.site.urls)),
+]
+```
+Django 1.8.x 及以上：
+```
+from django.conf.urls import include, url
+from django.contrib import admin
+from learn import views as learn_views
+
+urlpatterns = [
+    url(r'^$', learn_views.home, name='home'),
+    url(r'^admin/', include(admin.site.urls)),
+]
+```
+注意：Django 1.10.x 中为
+```
+url(r'^admin/', admin.site.urls),
+```
+去掉了 include
+### (7) [可选] 创建数据库表
+```
+python manage.py syncdb
+ 
+# Django 1.9.x 以及上要用
+python manage.py migrate
+```
+创建数据库虽然本节不会用到，但是可以让一些提示消失（提示你要创建数据库之类的）
+### (8) 运行开发服务器，看看效果
+```
+python manage.py runserver
+```
+> Django 1.10.x 中自己把 urls.py 中对应的地方修改成 (去掉 include)
+```
+url(r'^admin/', admin.site.urls),
+```
+> 模板补充知识：网站模板的设计，一般的，我们做网站有一些通用的部分，比如 导航，底部，访问统计代码等等
+> nav.html, bottom.html, tongji.html,可以写一个 base.html 来包含这些通用文件（include)
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}默认标题{% endblock %} - 自强学堂</title>
+</head>
+<body>
+ 
+{% include 'nav.html' %}
+ 
+{% block content %}
+<div>这里是默认内容，所有继承自这个模板的，如果不覆盖就显示这里的默认内容。</div>
+{% endblock %}
+ 
+{% include 'bottom.html' %}
+ 
+{% include 'tongji.html' %}
+ 
+</body>
+</html>
+```
+> 如果需要，写足够多的 block 以便继承的模板可以重写该部分，include 是包含其它文件的内容，就是把一些网页共用的部分拿出来，重复利用，改动的时候也方便一些，还可以把广告代码放在一个单独的html中，改动也方便一些，在用到的地方include进去。其它的页面继承自 base.html 就好了，继承后的模板也可以在 block 块中 include 其它的模板文件。比如我们的首页 home.html，继承或者说扩展(extends)原来的 base.html，可以简单这样写，重写部分代码（默认值的那一部分不用改）
+```
+{% extends 'base.html' %}
+ 
+{% block title %}欢迎光临首页{% endblock %}
+ 
+{% block content %}
+{% include 'ad.html' %}
+这里是首页，欢迎光临
+{% endblock %}
+```
+> ** 注意：模板一般放在app下的templates中，Django会自动去这个文件夹中找。但 假如我们每个app的templates中都有一个 index.html，当我们在views.py中使用的时候，直接写一个 render(request, 'index.html')，Django 能不能找到当前 app 的 templates 文件夹中的 index.html 文件夹呢?（答案是不一定能，有可能找错）**
+
+> ** Django 模板查找机制： Django 查找模板的过程是在每个 app 的 templates 文件夹中找（而不只是当前 app 中的代码只在当前的 app 的 templates 文件夹中找）。各个 app 的 templates 形成一个文件夹列表，Django 遍历这个列表，一个个文件夹进行查找，当在某一个文件夹找到的时候就停止，所有的都遍历完了还找不到指定的模板的时候就是 Template Not Found （过程类似于Python找包）。这样设计有利当然也有弊，有利是的地方是一个app可以用另一个app的模板文件，弊是有可能会找错了。所以我们使用的时候在 templates 中建立一个 app 同名的文件夹，这样就好了。这就需要把每个app中的 templates 文件夹中再建一个 app 的名称，仅和该app相关的模板放在 app/templates/app/ 目录下面。
+
+例如：项目 zqxt 有两个 app，分别为 tutorial 和 tryit
+```
+zqxt
+├── tutorial
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── models.py
+│   ├── templates
+│   │   └── tutorial
+│   │       ├── index.html
+│   │       └── search.html
+│   ├── tests.py
+│   └── views.py
+├── tryit
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── models.py
+│   ├── templates
+│   │   └── tryit
+│   │       ├── index.html
+│   │       └── poll.html
+│   ├── tests.py
+│   └── views.py
+├── manage.py
+└── zqxt
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+```
+这样，使用的时候，模板就是 "tutorial/index.html" 和 "tryit/index.html" 这样有app作为名称的一部分，就不会混淆。
+
+模板中的一些循环，条件判断，标签，过滤器等使用请看下一节的内容。
+***
+### (9) 模版进阶
+> 本节主要讲 Django模板中的循环，条件判断，常用的标签，过滤器的使用。
+> 1. 列表，字典，类的实例的使用
+> 2. 循环：迭代显示列表，字典等中的内容
+> 3. 条件判断：判断是否显示该内容，比如判断是手机访问，还是电脑访问，给出不一样的代码。
+> 4. 标签：for，if 这样的功能都是标签。
+> 5. 过滤器：管道符号后面的功能，比如{{ var|length }}，求变量长度的 length 就是一个过滤器。
+
+如果需要将一个或多个变量共享给多个网页或者所有网页使用，比如在网页上显示来访者的IP，这个可以使用 Django 上下文渲染器 来做。
+
+#### 实例1 : 显示一个基本的字符串在网页上
+views.py
+```
+# -*- coding: utf-8 -*-
+from django.shortcuts import render
+ 
+ 
+def home(request):
+    string = u"Github是全球最大的男性同性交友平台，可用它来进行一切开源在线协同管理！"
+    return render(request, 'home.html', {'string': string})
+```
+在视图中我们传递了一个字符串名称是 string 到模板 home.html，在模板中这样使用它：
+home.html
+```
+{{ string }}
+```
+
+#### 实例2 : 基本的 for 循环 和 List内容的显示
+views.py
+```
+def home(request):
+    TutorialList = ["HTML", "CSS", "jQuery", "Python", "Django"]
+    return render(request, 'home.html', {'TutorialList': TutorialList})
+```
+在视图中我们传递了一个List到模板 home.html，在模板中这样使用它：
+
+home.html
+```
+# 教程列表：
+{% for i in TutorialList %}
+{{ i }}
+{% endfor %}
+```
+for 循环要有一个结束标记，上面的代码假如我们对应的是首页的网址（自己修改urls.py）
+**简单总结一下**：一般的变量之类的用 {{ }}（变量），功能类的，比如循环，条件判断是用 {%  %}（标签）
+
+#### 实例3 : 显示字典中内容：
+views.py
+```
+def home(request):
+    info_dict = {'site': u'产品客栈', 'content': u'各种产品经理干货分享'}
+    return render(request, 'home.html', {'info_dict': info_dict})
+```
+home.html
+```
+站点：{{ info_dict.site }} 内容：{{ info_dict.content }}
+```
+在模板中取字典的键是用点info_dict.site，而不是Python中的 info_dict['site']
+
+还可以这样遍历字典：
+```
+{% for key, value in info_dict.items %}
+    {{ key }}: {{ value }}
+{% endfor %}
+```
+其实就是遍历这样一个 ** List:  [('content', u'产品客栈'), ('site', u'各种产品经理干货分享')] **
+
+#### 实例4 : 在模板进行 条件判断和 for 循环的详细操作：
+views.py
+```
+def home(request):
+    List = map(str, range(100))# 一个长度为100的 List
+    return render(request, 'home.html', {'List': List})
+```
+假如我们想用逗号将这些元素连接起来：
+
+home.html
+```
+{% for item in List %}
+    {{ item }}, 
+{% endfor %}
+```
+效果略
+
+我们会发现最后一个元素后面也有一个逗号，这样肯定不爽，如果判断是不是遍历到了最后一个元素了呢？
+
+用变量 forloop.last 这个变量，如果是最后一项其为真，否则为假，更改如下：
+
+```
+{% for item in List %}
+    {{ item }}{% if not forloop.last %},{% endif %} 
+{% endfor %}
+```
+
+** 在for循环中还有很多有用的东西，如下：**
+| 变量 | 描述 |
+|:-:|:-|
+| forloop.counter | 索引从 1 开始算 |
+| forloop.counter0 | 索引从 0 开始算 |
+| forloop.revcounter | 索引从最大长度到 1 |
+| forloop.revcounter0 | 索引从最大长度到 0 |
+| forloop.first | 当遍历的元素为第一项时为真 |
+| forloop.last | 当遍历的元素为最后一项时为真 |
+| forloop.parentloop | 用在嵌套的 for 循环中， 获取上一层 for 循环的 forloop|
+
+当列表中可能为空值时用 for  empty
+```
+<ul>
+{% for athlete in athlete_list %}
+    <li>{{ athlete.name }}</li>
+{% empty %}
+    <li>抱歉，列表为空</li>
+{% endfor %}
+</ul>
+```
+
+### 实例5 : 模板上得到视图对应的网址：
+```
+# views.py
+def add(request, a, b):
+    c = int(a) + int(b)
+    return HttpResponse(str(c))
+ 
+ 
+# urls.py
+urlpatterns = patterns('',
+    url(r'^add/(\d+)/(\d+)/$', 'app.views.add', name='add'),
+)
+ 
+ 
+# template html
+{% url 'add' 4 5 %}
+```
+这样网址上就会显示出：/add/4/5/ 这个网址，假如我们以后修改 urls.py 中的 
+```
+r'^add/(\d+)/(\d+)/$'
+```
+这一部分，改成另的，比如：
+```
+r'^jiafa/(\d+)/(\d+)/$'
+```
+这样，我们不需要再次修改模板，当再次访问的时候，网址会自动变成 /jiafa/4/5/
+> **注意**：如果是 Django 1.4 的话，需要在模板开头加上 {% load url from future %} (如果有 extends 的话，加在 extends 下面）
+还可以使用 as 语句将内容取别名（相当于定义一个变量），多次使用（但视图名称到网址转换只进行了一次）
+```
+{% url 'some-url-name' arg arg2 as the_url %}
+ 
+<a href="{{ the_url }}">链接到：{{ the_url }}</a>
+```
+### 实例6 : 模板中的逻辑操作：
+> ==, !=, >=, <=, >, < 这些比较都可以在模板中使用，比如：
+```
+{% if var >= 90 %}
+成绩优秀，自强学堂你没少去吧！学得不错
+{% elif var >= 80 %}
+成绩良好
+{% elif var >= 70 %}
+成绩一般
+{% elif var >= 60 %}
+需要努力
+{% else %}
+不及格啊，大哥！多去自强学堂学习啊！
+{% endif %}
+```
+** and, or, not, in, not in 也可以在模板中使用 **
+
+假如我们判断 num 是不是在 0 到 100 之间：
+```
+{% if num <= 100 and num >= 0 %}
+num在0到100之间
+{% else %}
+数值不在范围之内！
+{% endif %}
+```
+假如我们判断 'ziqiangxuetang' 在不在一个列表变量 List 中：
+```
+{% if 'ziqiangxuetang' in List %}
+自强学堂在名单中
+{% endif %}
+```
+
+### 实例7 : 模板中 获取当前网址，当前用户等：
+如果不是在 views.py 中用的 render 函数，是 render_to_response 的话，需要将 request 加入到 上下文渲染器
+
+Django 1.8 及以后 修改 settings.py 
+```
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                ...
+                'django.template.context_processors.request',
+                ...
+            ],
+        },
+    },
+]
+```
+Django 1.7 及以前 修改 settings.py：
+
+如果没有 ** TEMPLATE_CONTEXT_PROCESSORS ** 请自行添加下列默认值：
+```
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+)
+```
+然后再加上 ** django.core.context_processors.request **
+```
+TEMPLATE_CONTEXT_PROCESSORS = (
+    ...
+    "django.core.context_processors.request",
+    ...
+)
+```
+> 然后在 模板中我们就可以用 request 了。一般情况下，** 推荐用 render 而不是用 render_to_response **
+
+#### (7.1) 获取当前用户：
+```
+{{ request.user }}
+```
+如果登陆就显示内容，不登陆就不显示内容：
+```
+{% if request.user.is_authenticated %}
+    {{ request.user.username }}，您好！
+{% else %}
+    请登陆，这里放登陆链接
+{% endif %}
+```
+
+#### (7.2.1)  获取当前网址：
+```
+{{ request.path }}
+```
+
+#### (7.2.2) 获取当前 GET 参数：
+```
+{{ request.GET.urlencode }}
+```
+
+#### (7.2.3) 合并到一起用的一个例子：
+```
+<a href="{{ request.path }}?{{ request.GET.urlencode }}&delete=1">当前网址加参数 delete</a>
+```
+比如我们可以判断 delete 参数是不是 1 来删除当前的页面内容。
+
+完整的内容参考官方文档：https://docs.djangoproject.com/en/1.10/ref/templates/builtins/
+
 ## 07 Django 模型(数据库)
+> Django 模型是与数据库相关的，与数据库相关的代码一般写在 models.py 中，Django 支持 sqlite3, MySQL, PostgreSQL等数据库，只需要在settings.py中配置即可，不用更改models.py中的代码，丰富的API极大的方便了使用。
+按步骤开始操作:
+```
+django-admin.py startproject learn_models # 新建一个项目
+cd learn_models # 进入到该项目的文件夹
+django-admin.py startapp people # 新建一个 people 应用（app)
+```
+补充：新建app也可以用 python manage.py startapp people, 需要指出的是，django-admin.py 是安装Django后多出的一个命令，并不是指一个 django-admin.py 脚本在当前目录下。
+
+那么project和app什么关系呢，一个项目一般包含多个应用，一个应用也可以用在多个项目中。
+
+将我们新建的应用（people）添加到 settings.py 中的 INSTALLED_APPS中，也就是告诉Django有这么一个应用。
+```
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+ 
+    'people',
+)
+```
+打开 people/models.py 文件，修改其中的代码如下：
+```
+from django.db import models
+ 
+class Person(models.Model):
+    name = models.CharField(max_length=30)
+    age = models.IntegerField()
+```
+我们新建了一个Person类，继承自models.Model, 一个人有姓名和年龄。这里用到了两种Field，更多Field类型可以参考教程最后的链接。
+
+我们来** 同步一下数据库（我们使用默认的数据库 SQLite3，无需配置）**
+```
+python manage.py syncdb # 进入 manage.py 所在的那个文件夹下输入这个命令
+ 
+# 注意：Django 1.7 及以上的版本需要用以下命令
+python manage.py makemigrations
+python manage.py migrate
+```
+我们会看到，Django生成了一系列的表，也生成了我们新建的people_person这个表，那么如何使用这个表呢？
+
+Django提供了丰富的API, 下面演示如何使用它。
+```
+$ python manage.py shell
+ 
+>>> from people.models import Person
+>>> Person.objects.create(name="WeizhongTu", age=24)
+<Person: Person object>
+>>>
+```
+我们新建了一个用户WeizhongTu 那么如何从数据库是查询到它呢？
+```
+>>> Person.objects.get(name="WeizhongTu")
+<Person: Person object>
+>>>
+```
+
+我们用了一个 .objects.get() 方法查询出来符合条件的对象，但是大家注意到了没有，查询结果中显示 < Person: **Person object** >，这里并没有显示出与WeizhongTu的相关信息，如果用户多了就无法知道查询出来的到底是谁，查询结果是否正确，我们重新修改一下 people/models.py
+
+> name 和 age 等字段中不能有 \_\_ （双下划线，因为在Django QuerySet API中有特殊含义（用于关系，包含，不区分大小写，以什么开头或结尾，日期的大于小于，正则等）
+
+> 也不能有Python中的关键字，name 是合法的，student_name 也合法，但是student\_\_name不合法，try, class, continue 也不合法，因为它是Python的关键字( ** import keyword; print(keyword.kwlist) 可以打出所有的关键字 ** )
+```
+from django.db import models
+
+class Person(models.Model):
+    name = models.CharField(max_length=30)
+    age = models.IntegerField()
+     
+    def __unicode__(self):
+    # 在Python3中使用 def __str__(self)
+        return self.name
+```
+按CTRL + C退出当前的Python shell, 重复上面的操作。显示效果略。
+- **新建一个对象的方法有以下几种：**
+> 1. Person.objects.create(name=name,age=age)
+> 2. p = Person(name="WZ", age=23)
+     p.save()
+> 3. p = Person(name="TWZ")
+     p.age = 23
+     p.save()
+> 4. Person.objects.get_or_create(name="WZT", age=23) # 这种方法是防止重复很好的方法，但是速度要相对慢些，返回一个元组，第一个为Person对象，第二个为True或False, 新建时返回的是True, 已经存在时返回False.
+
+- ** 获取对象有以下方法：**
+
+> 1. Person.objects.all()
+> 2. Person.objects.all()[:10] 切片操作，获取10个人，不支持负索引，切片可以节约内存
+> 3. Person.objects.get(name=name)
+     get是用来获取一个对象的，如果需要获取满足条件的一些人，就要用到filter
+> 4. Person.objects.filter(name="abc") # 等于
+     Person.objects.filter(name\_\_exact="abc") 名称严格等于 "abc" 的人
+> 5. Person.objects.filter(name\_\_iexact="abc") # 名称为 abc 但是不区分大小写，可以找到 ABC, Abc, aBC，这些都符合条件
+> 6. Person.objects.filter(name\_\_contains="abc") # 名称中包含 "abc"的人
+> 7. Person.objects.filter(name\_\_icontains="abc") #名称中包含 "abc"，且abc不区分大小写
+> 8. Person.objects.filter(name\_\_regex="^abc") # 正则表达式查询
+> 9. Person.objects.filter(name\_\_iregex="^abc")# 正则表达式不区分大小写
+**filter是找出满足条件的，当然也有排除符合某条件的 **
+> 10. Person.objects.exclude(name\_\_contains="WZ") # 排除包含 WZ 的Person对象
+> 11. Person.objects.filter(name\_\_contains="abc").exclude(age=23) # 找出名称含有abc, 但是排除年龄是23岁的
+
+参考文档：
+
+Django models 官方教程: https://docs.djangoproject.com/en/dev/topics/db/models/
+
+Fields相关官方文档：https://docs.djangoproject.com/en/dev/ref/models/fields/
+
 ## 08 Django 自定义 Field
+Django 的官方提供了很多的 Field，但是有时候还是不能满足我们的需求，不过Django提供了自定义 Field 的方法：
+
+提示：如果现在用不到可以跳过这一节，不影响后面的学习，等用到的时候再来学习不迟。
+
+来一个简单的例子吧。
+
+1. 减少文本的长度，保存数据的时候压缩，读取的时候解压缩，如果发现压缩后更长，就用原文本直接存储：
+
+Django 1.7 以下
+```
+from django.db import models
+ 
+class CompressedTextField(models.TextField):
+    """    model Fields for storing text in a compressed format (bz2 by default)    """
+    __metaclass__ = models.SubfieldBase
+ 
+    def to_python(self, value):
+        if not value:
+            return value
+ 
+        try:
+            return value.decode('base64').decode('bz2').decode('utf-8')
+        except Exception:
+            return value
+ 
+    def get_prep_value(self, value):
+        if not value:
+            return value
+ 
+        try:
+            value.decode('base64')
+            return value
+        except Exception:
+            try:
+                tmp = value.encode('utf-8').encode('bz2').encode('base64')
+            except Exception:
+                return value
+            else:
+                if len(tmp) > len(value):
+                    return value
+ 
+                return tmp
+```
+** to_python 函数用于转化数据库中的字符到 Python的变量， get_prep_value 用于将Python变量处理后(此处为压缩）保存到数据库，使用和Django自带的 Field 一样。 **
+
+Django 1.8 以上版本，可以用
+```
+#coding:utf-8
+from django.db import models
+ 
+ 
+class CompressedTextField(models.TextField):
+    """
+    model Fields for storing text in a compressed format (bz2 by default)
+    """
+ 
+    def from_db_value(self, value, expression, connection, context):
+        if not value:
+            return value
+        try:
+            return value.decode('base64').decode('bz2').decode('utf-8')
+        except Exception:
+            return value
+ 
+    def to_python(self, value):
+        if not value:
+            return value
+        try:
+            return value.decode('base64').decode('bz2').decode('utf-8')
+        except Exception:
+            return value
+ 
+    def get_prep_value(self, value):
+        if not value:
+            return value
+        try:
+            value.decode('base64')
+            return value
+        except Exception:
+            try:
+                return value.encode('utf-8').encode('bz2').encode('base64')
+            except Exception:
+                return value
+```
+Django 1.8及以上版本中，from_db_value ** 函数用于转化数据库中的字符到 Python的变量。 **
+
+2. 比如我们想保存一个 列表到数据库中，在读取用的时候要是 Python的列表的形式，我们来自己写一个 ListField：
+
+这个ListField继承自 TextField，代码如下：
+```
+from django.db import models
+import ast
+ 
+class ListField(models.TextField):
+    __metaclass__ = models.SubfieldBase
+    description = "Stores a python list"
+ 
+    def __init__(self, *args, **kwargs):
+        super(ListField, self).__init__(*args, **kwargs)
+ 
+    def to_python(self, value):
+        if not value:
+            value = []
+ 
+        if isinstance(value, list):
+            return value
+ 
+        return ast.literal_eval(value)
+ 
+    def get_prep_value(self, value):
+        if value is None:
+            return value
+ 
+        return unicode(value) # use str(value) in Python 3
+ 
+    def value_to_string(self, obj):
+        value = self._get_val_from_obj(obj)
+        return self.get_db_prep_value(value)
+```
+使用它很简单，首先导入 ListField，像自带的 Field 一样使用：
+```
+class Article(models.Model):
+    labels = ListField()
+```
+在终端上尝试（运行 python manage.py shell 进入）：
+```
+>>> from app.models import Article
+>>> d = Article()
+>>> d.labels
+[]
+>>> d.labels = ["Python", "Django"]
+>>> d.labels
+["Python", "Django"]
+```
+进入项目目录，输入 python manage.py shell 搞起
+```
+>>> from blog.models import Article
+ 
+>>> a = Article()
+>>> a.labels.append('Django')
+>>> a.labels.append('custom fields')
+ 
+>>> a.labels
+['Django', 'custom fields']
+ 
+>>> type(a.labels)
+<type 'list'>
+ 
+>>> a.content = u'我正在写一篇关于自定义Django Fields的教程'
+>>> a.save()
+```
+参考网址：
+
+https://djangosnippets.org/snippets/2014/
+
+https://docs.djangoproject.com/en/dev/howto/custom-model-fields/
+
 ## 09 Django 数据表更改
 ## 10 Django QuerySet API
 ## 11 Django 后台
