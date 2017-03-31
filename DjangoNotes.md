@@ -476,7 +476,8 @@ url(r'^add/(\d+)/(\d+)/$', calc_views.add2, name='add2'),
 
 ## 05 Django URL name详解
 基于上一节的代码来开始这一节的内容。笔记中所有的文件，没有特别说明的，都是以 utf8 格式编码的，请养成这个习惯。
-### (1)打开 calc_views/urls.py
+
+### (1) 打开 calc_views/urls.py
 ```
 from django.conf.urls import url
 from django.contrib import admin
@@ -626,12 +627,14 @@ url(r'^new_add/(\d+)/(\d+)/$', calc_views.add2, name='add2'),
 
 ## 06 Django 模板(templates)
 在前面的几节中我们都是用简单的 django.http.HttpResponse 来把内容显示到网页上，本节将讲解如何使用渲染模板的方法来显示内容。
+
 ### (1) 创建一个 zqxt_tmpl 项目，和一个 名称为 learn 的应用
 ```
 django-admin.py startproject zqxt_tmpl
 cd zqxt_tmpl
 python manage.py startapp learn
 ```
+
 ### (2) 把 learn 加入到 settings.INSTALLED_APPS中
 ```
 INSTALLED_APPS = (
@@ -645,6 +648,7 @@ INSTALLED_APPS = (
     'learn',
 )
 ```
+
 ### (3) 打开 learn/views.py 写一个首页的视图
 ```
 from django.shortcuts import render
@@ -653,6 +657,7 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'home.html')
 ```
+
 ### (4) 在 learn目录下新建一个 templates 文件夹，里面新建一个 home.html
 默认配置下，Django 的模板系统会自动找到app下面的templates文件夹中的模板文件。
 目录的结构是这样的：
@@ -675,7 +680,9 @@ zqxt_tmpl
     ├── urls.py
     └── wsgi.py
 ```
+
 ### (5) 在 home.html 中写一些内容
+```
 <!DOCTYPE html>
 <html>
 <head>
@@ -685,6 +692,8 @@ zqxt_tmpl
 欢迎光临产品客栈
 </body>
 </html>
+```
+
 ### (6) 将视图函数对应到网址，更改 zqxt_tmpl/urls.py
 Django 1.7.x 及以下可以这样：
 ```
@@ -715,6 +724,7 @@ urlpatterns = [
 url(r'^admin/', admin.site.urls),
 ```
 去掉了 include
+
 ### (7) [可选] 创建数据库表
 ```
 python manage.py syncdb
@@ -723,6 +733,7 @@ python manage.py syncdb
 python manage.py migrate
 ```
 创建数据库虽然本节不会用到，但是可以让一些提示消失（提示你要创建数据库之类的）
+
 ### (8) 运行开发服务器，看看效果
 ```
 python manage.py runserver
@@ -754,6 +765,7 @@ url(r'^admin/', admin.site.urls),
 </body>
 </html>
 ```
+
 > 如果需要，写足够多的 block 以便继承的模板可以重写该部分，include 是包含其它文件的内容，就是把一些网页共用的部分拿出来，重复利用，改动的时候也方便一些，还可以把广告代码放在一个单独的html中，改动也方便一些，在用到的地方include进去。其它的页面继承自 base.html 就好了，继承后的模板也可以在 block 块中 include 其它的模板文件。比如我们的首页 home.html，继承或者说扩展(extends)原来的 base.html，可以简单这样写，重写部分代码（默认值的那一部分不用改）
 ```
 {% extends 'base.html' %}
@@ -765,6 +777,7 @@ url(r'^admin/', admin.site.urls),
 这里是首页，欢迎光临
 {% endblock %}
 ```
+
 > ** 注意：模板一般放在app下的templates中，Django会自动去这个文件夹中找。但 假如我们每个app的templates中都有一个 index.html，当我们在views.py中使用的时候，直接写一个 render(request, 'index.html')，Django 能不能找到当前 app 的 templates 文件夹中的 index.html 文件夹呢?（答案是不一定能，有可能找错）**
 
 > ** Django 模板查找机制： Django 查找模板的过程是在每个 app 的 templates 文件夹中找（而不只是当前 app 中的代码只在当前的 app 的 templates 文件夹中找）。各个 app 的 templates 形成一个文件夹列表，Django 遍历这个列表，一个个文件夹进行查找，当在某一个文件夹找到的时候就停止，所有的都遍历完了还找不到指定的模板的时候就是 Template Not Found （过程类似于Python找包）。这样设计有利当然也有弊，有利是的地方是一个app可以用另一个app的模板文件，弊是有可能会找错了。所以我们使用的时候在 templates 中建立一个 app 同名的文件夹，这样就好了。这就需要把每个app中的 templates 文件夹中再建一个 app 的名称，仅和该app相关的模板放在 app/templates/app/ 目录下面。
@@ -799,17 +812,19 @@ zqxt
     ├── urls.py
     └── wsgi.py
 ```
+
 这样，使用的时候，模板就是 "tutorial/index.html" 和 "tryit/index.html" 这样有app作为名称的一部分，就不会混淆。
 
 模板中的一些循环，条件判断，标签，过滤器等使用请看下一节的内容。
 ***
+
 ### (9) 模版进阶
 > 本节主要讲 Django模板中的循环，条件判断，常用的标签，过滤器的使用。
 > 1. 列表，字典，类的实例的使用
 > 2. 循环：迭代显示列表，字典等中的内容
 > 3. 条件判断：判断是否显示该内容，比如判断是手机访问，还是电脑访问，给出不一样的代码。
 > 4. 标签：for，if 这样的功能都是标签。
-> 5. 过滤器：管道符号后面的功能，比如{{ var|length }}，求变量长度的 length 就是一个过滤器。
+> 5. 过滤器：管道符号后面的功能，比如 {{ var|length }}，求变量长度的 length 就是一个过滤器。
 
 如果需要将一个或多个变量共享给多个网页或者所有网页使用，比如在网页上显示来访者的IP，这个可以使用 Django 上下文渲染器 来做。
 
@@ -952,6 +967,7 @@ r'^jiafa/(\d+)/(\d+)/$'
  
 <a href="{{ the_url }}">链接到：{{ the_url }}</a>
 ```
+
 ### 实例6 : 模板中的逻辑操作：
 > ==, !=, >=, <=, >, < 这些比较都可以在模板中使用，比如：
 ```
