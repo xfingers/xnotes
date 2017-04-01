@@ -5,10 +5,10 @@
 ## [Markdown 笔记](MarkdownNotes.md) （已完成）
 ## [Python 3 笔记](Python3Notes.md) (已完成) 
 ## [Django 笔记](DjangoNotes.md) （更新中）
-## [PHP 笔记](PHPNotes.md) （计划中）
-## [HMTL5 笔记](HTML5Notes.md) （计划中）
-## [CSS3 笔记](CSS3Notes.md) （计划中）
-## [JavaScript](JavaScriptNotes.md) 笔记 （计划中）
+## [PHP 笔记](PHPNotes.md) （更新中）
+## [HMTL5 笔记](HTML5Notes.md) （更新中）
+## [CSS3 笔记](CSS3Notes.md) （更新中）
+## [JavaScript](JavaScriptNotes.md) 笔记 （更新中）
 ## Ajax 笔记 （计划中）
 ## NodeJS 笔记 （计划中）
 ## ExtJS5 笔记 （计划中）
@@ -66,11 +66,11 @@
 ## Tomcat 笔记 （计划中）
 ***
 # 项目篇
-## PMP 笔记 （计划中）
+## [PMP 笔记](PMBOK5thNotes.md) （计划中）
 ## ACP 笔记 （计划中）
 ***
 # 工具篇
-## Git 笔记 （计划中）
+## [Git 笔记](GitNotes.md) （更新中）
 ## vim 笔记 （计划中）
 ## Firebug 笔记 （计划中）
 ## Eclipse 笔记 （计划中）
@@ -78,4 +78,7 @@
 ## SPSS 笔记 （计划中）
 ## Weka 笔记 （计划中）
 ## Kali渗透测试 笔记 （计划中）
-
+***
+# 系统篇
+## [Linux 笔记](LinuxNotes.md) （更新中）
+## [MacOSX 笔记](MacOSXNotes.md) （更新中）
