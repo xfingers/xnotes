@@ -1743,7 +1743,7 @@ v0.9
 v1.0
 ```
 
-注意，标签不是按时间顺序列出，而是按字母排序的。可以用git show <tagname>查看标签信息：
+注意，标签不是按时间顺序列出，而是按字母排序的。可以用 ` git show <tagname> ` 查看标签信息：
 
 ```
 $ git show v0.9
@@ -1753,7 +1753,9 @@ Date:   Thu Aug 22 11:22:08 2013 +0800
 
     add merge
 ...
+
 ```
+
 
 可以看到， ` v0.9 ` 确实打在 ` add merge ` 这次提交上。
 
@@ -1885,13 +1887,13 @@ To git@github.com:michaelliao/learngit.git
 
 ** 小结 **
 
-命令 ` git push origin <tagname> ` 可以推送一个本地标签；
+- 命令 ` git push origin <tagname> ` 可以推送一个本地标签；
 
-命令 ` git push origin --tags ` 可以推送全部未推送过的本地标签；
+- 命令 ` git push origin --tags ` 可以推送全部未推送过的本地标签；
 
-命令 ` git tag -d <tagname> ` 可以删除一个本地标签；
+- 命令 ` git tag -d <tagname> ` 可以删除一个本地标签；
 
-命令 ` git push origin :refs/tags/<tagname> ` 可以删除一个远程标签。
+- 命令 ` git push origin :refs/tags/<tagname> ` 可以删除一个远程标签。
 
 
 ## 08 使用 GitHub
@@ -1927,10 +1929,6 @@ Bootstrap的官方仓库 ` twbs/bootstrap ` 、你在GitHub上克隆的仓库 ` 
 - 可以推送pull request给官方仓库来贡献代码。
 
 
-
-
-
-
 ## 09 自定义 Git
 
 在安装Git一节中，我们已经配置了 ` user.name ` 和 ` user.email ` ，实际上，Git还有很多可配置项。
@@ -1958,7 +1956,9 @@ $ git config --global color.ui true
 忽略文件的原则是：
 
 - 忽略操作系统自动生成的文件，比如缩略图等；
+
 - 忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的.class文件；
+
 - 忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件。
 
 举个例子：
@@ -2206,12 +2206,15 @@ $ sudo chown -R git:git sample.git
 出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编辑 ` /etc/passwd ` 文件完成。找到类似下面的一行：
 
 ```
-git:x:1001:1001:,,,:/home/git:/bin/bash
+git:x:1001:1001:,,,:/home/git:/bin/bash.
+
 ```
+
 改为：
 
 ```
 git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+
 ```
 
 这样， ` git ` 用户可以正常通过ssh使用 `git ` ，但无法登录shell，因为我们为 ` git ` 用户指定的 ` git-shell ` 每次一登录就自动退出。
@@ -2262,6 +2265,6 @@ Git虽然极其强大，命令繁多，但常用的就那么十来个，掌握�
 Git Cheat Sheet
 ```
 
-现在告诉你Git的官方网站：http://git-scm.com，英文自我感觉不错的童鞋，可以经常去官网看看。什么，打不开网站？相信我，我给出的绝对是官网地址，而且，Git官网决没有那么容易宕机，可能是你的人品问题，赶紧面壁思过，好好想想原因。
+现在告诉你Git的官方网站： ` http://git-scm.com ` ，英文自我感觉不错的童鞋，可以经常去官网看看。什么，打不开网站？相信我，我给出的绝对是官网地址，而且，Git官网决没有那么容易宕机，可能是你的人品问题，赶紧面壁思过，好好想想原因。
 
 如果你学了Git后，工作效率大增，有更多的空闲时间健身看电影，那我的教学目标就达到了。
