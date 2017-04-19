@@ -16,7 +16,7 @@
 ## HighCharts 笔记 （计划中）
 ## ThinkPHP 笔记 （计划中）
 ## jQuery 笔记 （计划中）
-## JSON 笔记 （计划中）
+## [JSON 笔记](JsonNotes.md) （已完成）
 ## BootStrap 笔记 （计划中）
 ## Angular 笔记 （计划中）
 ## Vue 笔记 （计划中）
@@ -70,7 +70,7 @@
 ## ACP 笔记 （计划中）
 ***
 # 工具篇
-## [Git 笔记](GitNotes.md) （更新中）
+## [Git 笔记](GitNotes.md) （已完成）
 ## vim 笔记 （计划中）
 ## Firebug 笔记 （计划中）
 ## Eclipse 笔记 （计划中）
