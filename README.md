@@ -6,6 +6,7 @@
 ## [Python 3 笔记](Python3Notes.md) (已完成) 
 ## [Django 笔记](DjangoNotes.md) （更新中）
 ## [PHP 笔记](PHPNotes.md) （更新中）
+## [HTML 笔记](HTMLNotes.md) （更新中）
 ## [HMTL5 笔记](HTML5Notes.md) （更新中）
 ## [CSS3 笔记](CSS3Notes.md) （更新中）
 ## [JavaScript](JavaScriptNotes.md) 笔记 （更新中）
