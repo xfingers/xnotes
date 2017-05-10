@@ -89,9 +89,16 @@ Web浏览器（如谷歌浏览器，Internet Explorer，Firefox，Safari）是�
 ### HTML 网页结构
 下面是一个可视化的HTML页面结构：
 
-```
-<html>
-```
+> <html>
+> > <head>
+> > > <title>页面标题</title>
+> > </head>
+> > <body>
+> > > <h1>这是一个标题</h1>
+> > > <p>这是一个段落</p>
+> > > <p>这是另外一个段落</p>
+> > </body>
+> </html>
 
 
 
