@@ -67,7 +67,9 @@
 ## Tomcat 笔记 （计划中）
 ***
 # 项目篇
-## [PMP 笔记](PMBOK5thNotes.md) （计划中）
+## [PMBOK5thNotes](PMBOK5thNotes.md) （更新中）
+## [PMP-ITTO](PMP-ITTO.md) （更新中）
+## [PMP-Formulas](PMP-Formulas.md) （更新中）
 ## ACP 笔记 （计划中）
 ***
 # 工具篇
