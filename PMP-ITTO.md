@@ -35,17 +35,6 @@
 
 
 ***
-# PMBOK第五版ITTO记忆终极版
-
-[http://www.360docs.net/doc/info-361664a133d4b14e84246817-4.html]
-
-[http://www.doc88.com/p-2344903591837.html]
-
-[http://doc.xuehai.net/s149442e911b2f92c62024695.html]
-
-[http://www.docin.com/p-979806318.html]
-
-[http://blog.csdn.net/AntreeHuang/article/details/45741901]
 
 # PMBOK第五版ITTO记忆终极版
 
