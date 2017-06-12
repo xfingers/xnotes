@@ -13,20 +13,9 @@
 7 | 总浮动时间:TF | LS-ES or LF-EF |  |
 8 | 自由浮动时间:FF | ES-EF | ES(Successor)/EF(Predecessor) |
 
-<DIV border = "1">
-<DIV border = "1">
-<DIV border = "1">ES(最早开始)</DIV><DIV border = "1">duration(持续时间)</DIV><DIV border = "1">EF(最早结束)</DIV>
-</DIV>
-<DIV border = "1">
-<DIV border = "1">Task Name(活动名称)</DIV>
-</DIV>
-<DIV border = "1">
-<DIV border = "1">LS(最晚开始)</DIV><DIV border = "1">TF(总浮动时间)</DIV><DIV border = "1">LF(最晚结束)</DIV>
-</DIV>
-</DIV>
 
 ES(最早开始) | duration(持续时间 | EF(最早结束)
-- | - | - 
+:-: | :-: | :-: 
  | Task Name(活动名称) | 
 LS(最晚开始) | TF(总浮动时间) | LF(最晚结束)
 
