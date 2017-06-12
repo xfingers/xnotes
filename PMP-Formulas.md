@@ -13,6 +13,17 @@
 7 | 总浮动时间:TF | LS-ES or LF-EF |  |
 8 | 自由浮动时间:FF | ES-EF | ES(Successor)/EF(Predecessor) |
 
+<DIV border = "1">
+<DIV border = "1">
+<DIV border = "1">ES(最早开始)</DIV><DIV border = "1">duration(持续时间)</DIV><DIV border = "1">EF(最早结束)</DIV>
+</DIV>
+<DIV border = "1">
+<DIV border = "1">Task Name(活动名称)</DIV>
+</DIV>
+<DIV border = "1">
+<DIV border = "1">LS(最晚开始)</DIV><DIV border = "1">TF(总浮动时间)</DIV><DIV border = "1">LF(最晚结束)</DIV>
+</DIV>
+</DIV>
 
 ## 项目成本管理（EVM:挣值管理）
 编号 | 名称 | 公式 | 含义 | 其他
@@ -34,7 +45,9 @@
 15 | 完工偏差：VAC | BAC-EAC | 花费超出预算，VAC会是负值 | 可以使用EAC、ETC和VAC来预测项目完成时的挣值数
 > 记住：更低(Lower) = 失败(Loser)。如果CPI或SPI小于1，或者CV或者SV为负值，就说明你有麻烦了
 
-###
+
+***
+
 #英文版
 ## TIME(chapter6)
 
