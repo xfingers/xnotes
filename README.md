@@ -1,6 +1,14 @@
 # xNotes
 逐步整理那些年学过的技能树。o(∩_∩)o 
 ***
+
+# 项目篇
+## [PMBOK5thNotes](PMBOK5thNotes.md) （更新中）
+## [PMP-ITTO](PMP-ITTO.md) （更新中）
+## [PMP-Formulas](PMP-Formulas.md) （更新中）
+## ACP 笔记 （计划中）
+***
+
 # 代码篇
 ## [Markdown 笔记](MarkdownNotes.md) （已完成）
 ## [Python 3 笔记](Python3Notes.md) (已完成) 
@@ -66,12 +74,7 @@
 ## Nignx 笔记 （计划中）
 ## Tomcat 笔记 （计划中）
 ***
-# 项目篇
-## [PMBOK5thNotes](PMBOK5thNotes.md) （更新中）
-## [PMP-ITTO](PMP-ITTO.md) （更新中）
-## [PMP-Formulas](PMP-Formulas.md) （更新中）
-## ACP 笔记 （计划中）
-***
+
 # 工具篇
 ## [Git 笔记](GitNotes.md) （已完成）
 ## vim 笔记 （计划中）
