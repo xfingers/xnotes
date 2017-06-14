@@ -3,9 +3,10 @@
 ***
 
 # 项目篇
-## [PMBOK第五版读书笔记](PMBOK5thNotes.md) （更新中）
-## [PMBok第五版复习笔记](PMBok5th-Review.md.md) （更新中）
+
+## [PMBok第五版复习笔记](PMBok5th-Review.md) （更新中）
 ## [PMP-Formulas](PMP-Formulas.md) （更新中）
+## [PMBOK第五版读书笔记](PMBOK5thNotes.md) （计划中）
 ## ACP 笔记 （计划中）
 ***
 
