@@ -2,6 +2,19 @@
 逐步整理那些年学过的技能树。o(∩_∩)o 
 ***
 
+# 大数据篇
+
+## [Hadoop学习笔记](HadoopNotes.md)
+
+## [Spark学习笔记](SparkNotes.md)
+
+## [Storm学习笔记](StormNotes.md)
+
+## [Docker学习笔记](DockerNotes.md)
+
+## [OpenStack学习笔记](OpenStackNotes.md)
+
+
 # 项目篇
 
 ## [PMBok第五版复习笔记](PMBok5th-Review.md) （更新中）
