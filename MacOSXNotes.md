@@ -46,15 +46,16 @@ killall SystemUIServer
 ### 目录操作
 | 命令名	| 功能描述 | 使用举例 |
 | ----- | :------ | :----- |
-mkdir	创建一个目录	mkdir dirname
-rmdir	删除一个目录	rmdir dirname
-mvdir	移动或重命名一个目录	mvdir dir1 dir2
-cd	改变当前目录	cd dirname
-pwd	显示当前目录的路径名	pwd
-ls	显示当前目录的内容	ls -la
-dircmp	比较两个目录的内容	dircmp dir1 dir2
+| mkdir | 创建一个目录 | mkdir dirname |
+| rmdir	| 删除一个目录 | rmdir dirname |
+| mvdir	| 移动或重命名一个目录 | mvdir dir1 dir2 |
+| cd | 改变当前目录 | cd dirname |
+| pwd | 显示当前目录的路径名 | pwd |
+| ls | 显示当前目录的内容 | ls -la |
+| dircmp | 比较两个目录的内容 | dircmp dir1 dir2 |
 ### 文件操作
-命令名	功能描述	使用举例
+| 命令名	| 功能描述 | 使用举例 |
+| ----- | :------ | :----- |
 cat	显示或连接文件	cat filename
 pg	分页格式化显示文件内容	pg filename
 more	分屏显示文件内容	more filename
