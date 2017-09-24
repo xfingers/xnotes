@@ -44,7 +44,8 @@ killall SystemUIServer
 ## 附录II - Mac命令大全
 
 ### 目录操作
-命令名	功能描述	使用举例
+| 命令名	| 功能描述 | 使用举例 |
+| ----- | :------ | :----- |
 mkdir	创建一个目录	mkdir dirname
 rmdir	删除一个目录	rmdir dirname
 mvdir	移动或重命名一个目录	mvdir dir1 dir2
