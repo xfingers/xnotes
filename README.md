@@ -2,26 +2,19 @@
 逐步整理那些年学过的技能树。o(∩_∩)o 
 ***
 
+# 云计算篇
+
+## [OpenStack学习笔记](OpenStackNotes.md)
+## [zStack学习笔记](zStackNotes.md)
+## [CloudStack学习笔记](CloudStackNotes.md)
+## [Docker学习笔记](DockerNotes.md)
+
 # 大数据篇
 
 ## [Hadoop学习笔记](HadoopNotes.md)
-
 ## [Spark学习笔记](SparkNotes.md)
-
 ## [Storm学习笔记](StormNotes.md)
 
-## [Docker学习笔记](DockerNotes.md)
-
-## [OpenStack学习笔记](OpenStackNotes.md)
-
-
-# 项目篇
-
-## [PMBok第五版复习笔记](PMBok5th-Review.md) （更新中）
-## [PMP-Formulas](PMP-Formulas.md) （更新中）
-## [PMBOK第五版读书笔记](PMBOK5thNotes.md) （计划中）
-## ACP 笔记 （计划中）
-***
 
 # 代码篇
 ## [Markdown 笔记](MarkdownNotes.md) （已完成）
@@ -83,6 +76,16 @@
 ## Apache 笔记 （计划中）
 ## Nignx 笔记 （计划中）
 ## Tomcat 笔记 （计划中）
+## LNMPA 笔记 （计划中）
+***
+
+
+# 项目篇
+
+## [PMBok第五版复习笔记](PMBok5th-Review.md) （更新中）
+## [PMP-Formulas](PMP-Formulas.md) （更新中）
+## [PMBOK第五版读书笔记](PMBOK5thNotes.md) （计划中）
+## ACP 笔记 （计划中）
 ***
 
 # 工具篇
